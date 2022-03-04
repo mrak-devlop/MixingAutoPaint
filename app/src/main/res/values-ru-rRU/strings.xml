@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Смешивание авто краски</string>
+    <string name="add_mix_paint">Добавить</string>
+    <string name="in_paint">Количество частей краски</string>
+    <string name="in_hardener">Количество частей отвердителя</string>
+    <string name="in_diluent">Количество частей разбавителя</string>
+    <string name="paint_mass">Масса готовой краски</string>
+    <string name="bt_save">Расчитать и Сохранить</string>
+    <string name="error_msg">Не заполнены все поля, если компонент отсутствует введите 0</string>
+</resources>
