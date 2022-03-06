@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mixing Auto Paint</string>
     <string name="add_mix_paint">add mix paint</string>
-    <string name="in_paint">Number of pieces of paint</string>
+    <string name="in_paint">Number of parts of paint</string>
     <string name="in_hardener">Number of parts of hardener</string>
     <string name="in_diluent">Number of parts of diluent</string>
     <string name="paint_mass">Weight of finished paint</string>
