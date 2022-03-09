@@ -1,14 +1,11 @@
 package ru.kitfactory.mixingautopaint.presentation
 
-import android.app.Activity
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kitfactory.mixingautopaint.R
 
@@ -26,10 +23,11 @@ class PaintListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_paint_list, container, false)
         addButton = view.findViewById(R.id.addMixButton) as FloatingActionButton
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         addButton.setOnClickListener {
-         activity?.supportFragmentManager?.beginTransaction()?.
-         replace(R.id.fragment_container_view, AddMixPaintFragment())?.
-         addToBackStack("List")?.commit()
+            fragmentTransaction?.replace(R.id.fragment_container_view, AddMixPaintFragment())
+            fragmentTransaction?.addToBackStack("List")
+            fragmentTransaction?.commit()
         }
         return view
     }

@@ -8,4 +8,5 @@
     <string name="paint_mass">Масса готовой краски</string>
     <string name="bt_save">Расчитать и Сохранить</string>
     <string name="error_msg">Не заполнены все поля, если компонент отсутствует введите 0</string>
+    <string name="in_title">Введите Название</string>
 </resources>

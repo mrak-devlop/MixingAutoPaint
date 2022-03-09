@@ -7,6 +7,7 @@ import java.util.UUID
 @Entity
 data class Paint(
     @PrimaryKey val uid: UUID = UUID.randomUUID(),
+    var titleMix: String,
     var paintMass : Double,
     var massHardener : Double,
     var paintPlusHardener : Double,
