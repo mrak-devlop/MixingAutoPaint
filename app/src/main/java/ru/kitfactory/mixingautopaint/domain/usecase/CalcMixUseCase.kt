@@ -28,9 +28,9 @@ class CalcMixUseCase(private val dataMix :  DataMix, private val title: String) 
         // краска плюс отвердитель
         val paintPlusHardener = massPaint + massHardener
 
-        return CompleteMixData(title, massPaint,
-            massHardener, paintPlusHardener,
-            massDiluent, paintMass.toDouble())
+        return CompleteMixData(title, massPaint.toFloat(),
+            massHardener.toFloat(), paintPlusHardener.toFloat(),
+            massDiluent.toFloat(), paintMass.toDouble().toFloat())
     }
 
 }

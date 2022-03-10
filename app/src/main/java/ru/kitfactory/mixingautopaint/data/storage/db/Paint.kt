@@ -8,9 +8,9 @@ import java.util.UUID
 data class Paint(
     @PrimaryKey val uid: UUID = UUID.randomUUID(),
     var titleMix: String,
-    var paintMass : Double,
-    var massHardener : Double,
-    var paintPlusHardener : Double,
-    var massDiluent: Double,
-    var massMix: Double
+    var paintMass: Float,
+    var massHardener: Float,
+    var paintPlusHardener: Float,
+    var massDiluent: Float,
+    var massMix: Float,
 )

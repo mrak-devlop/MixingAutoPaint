@@ -3,6 +3,7 @@ package ru.kitfactory.mixingautopaint.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.kitfactory.mixingautopaint.R
+import ru.kitfactory.mixingautopaint.data.storage.DbSource
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,5 +16,6 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.fragment_container_view, fragment)
                 .commit()
         }
+
     }
 }
