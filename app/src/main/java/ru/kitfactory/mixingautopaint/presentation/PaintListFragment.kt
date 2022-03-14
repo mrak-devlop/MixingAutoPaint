@@ -26,7 +26,7 @@ class PaintListFragment : Fragment() {
         val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         addButton.setOnClickListener {
             fragmentTransaction?.replace(R.id.fragment_container_view, AddMixPaintFragment())
-            fragmentTransaction?.addToBackStack("List")
+            fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
         }
         return view

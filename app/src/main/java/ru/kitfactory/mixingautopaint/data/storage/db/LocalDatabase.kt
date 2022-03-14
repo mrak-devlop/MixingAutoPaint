@@ -7,6 +7,6 @@ import androidx.room.TypeConverters
 
 @Database(entities = [Paint::class], version = 1)
 @TypeConverters (TypeConverters::class)
-abstract class LocalDatabase : RoomDatabase(){
+    abstract class LocalDatabase : RoomDatabase(){
     abstract fun paintDao(): DbDao
 }

@@ -5,9 +5,9 @@ import java.util.UUID
 
 class TypeConverters {
     @TypeConverter
-    fun toUUID(uuid: String?): UUID? {
-        return UUID.fromString(uuid) }
+    fun toId(id: String?): Int? {
+        return id?.toInt() }
     @TypeConverter
-    fun fromUUID(uuid: UUID?): String? {
-        return uuid?.toString() }
+    fun fromUUID(id: Int?): String? {
+        return id?.toString() }
 }

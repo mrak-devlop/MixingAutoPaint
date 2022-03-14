@@ -1,10 +1,11 @@
 package ru.kitfactory.mixingautopaint.data.storage
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
-import java.util.UUID
+import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "crime-database"
 
@@ -14,8 +15,24 @@ class DbSource private constructor(context: Context) {
         DATABASE_NAME
     ).build()
     private val paintDao = localDatabase.paintDao()
-    fun getPaints(): List<Paint> = paintDao.getPaints()
-    fun getPaint(id: UUID): Paint? = paintDao.getPaint(id)
+    private val executor = Executors.newSingleThreadExecutor()
+    fun getPaints(): LiveData<List<Paint>> = paintDao.getPaints()
+    fun getPaint(id: Int): LiveData<Paint?> = paintDao.getPaint(id)
+    fun updatePaint(paint: Paint){
+        executor.execute {
+            paintDao.updatePaint(paint)
+        }
+    }
+    fun addPaint(paint: Paint){
+        executor.execute {
+            paintDao.addPaint(paint)
+        }
+    }
+    fun removePaint(id: Int){
+        executor.execute {
+            paintDao.removePaint(id)
+        }
+    }
     companion object {
         private var INSTANCE: DbSource? = null
         fun initialize(context: Context) { if (INSTANCE == null) {
