@@ -23,13 +23,18 @@ class PaintListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_paint_list, container, false)
         addButton = view.findViewById(R.id.addMixButton) as FloatingActionButton
+
+        return view
+    }
+
+    override fun onStart() {
+        super.onStart()
         val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         addButton.setOnClickListener {
             fragmentTransaction?.replace(R.id.fragment_container_view, AddMixPaintFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
         }
-        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
