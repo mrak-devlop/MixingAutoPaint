@@ -7,10 +7,10 @@ import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import java.util.concurrent.Executors
 
-private const val DATABASE_NAME = "crime-database"
+private const val DATABASE_NAME = "paint-database"
 
 class DbSource private constructor(context: Context) {
-    private val localDatabase : LocalDatabase = Room.databaseBuilder( context.applicationContext,
+    private val localDatabase : LocalDatabase = Room.databaseBuilder(context.applicationContext,
         LocalDatabase::class.java,
         DATABASE_NAME
     ).build()
@@ -35,6 +35,7 @@ class DbSource private constructor(context: Context) {
     }
     companion object {
         private var INSTANCE: DbSource? = null
+
         fun initialize(context: Context) { if (INSTANCE == null) {
             INSTANCE = DbSource(context) }
         }

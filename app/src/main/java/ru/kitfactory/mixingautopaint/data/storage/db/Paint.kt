@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "mix_auto_paint") // название таблицы бд
 data class Paint(
     @PrimaryKey(autoGenerate = true) val id: Int, //уникальное поле
-    var titleMix: String, // заголовок
-    var partPaint : Int, //количество частей краски
-    var partHardener: Int, // количество частей отвердителя
-    var partDiluent: Int, // колличество частей разбавителя
-    var paintMass: Int, // масса краски
-    var massHardener: Float, // масса отвердителя
-    var paintPlusHardener: Float, // масса краски плюс отвердитель
-    var massDiluent: Float, // масса разбавителя
+    var titleMix: String = "", // заголовок
+    var partPaint : Int = 0, //количество частей краски
+    var partHardener: Int = 0, // количество частей отвердителя
+    var partDiluent: Int = 0, // колличество частей разбавителя
+    var paintMass: Int = 0, // масса краски
+    var massHardener: Float = 0f, // масса отвердителя
+    var paintPlusHardener: Float = 0f, // масса краски плюс отвердитель
+    var massDiluent: Float = 0f // масса разбавителя
 
 )
