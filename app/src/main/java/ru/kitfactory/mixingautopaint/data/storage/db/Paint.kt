@@ -3,9 +3,10 @@ package ru.kitfactory.mixingautopaint.data.storage.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "mix_auto_paint") // название таблицы бд
+@Entity(tableName = "mix_paint_table") // название таблицы бд
 data class Paint(
-    @PrimaryKey(autoGenerate = true) val id: Int, //уникальное поле
+    @PrimaryKey(autoGenerate = true)
+    val id: Int, //уникальное поле
     var titleMix: String = "", // заголовок
     var partPaint : Int = 0, //количество частей краски
     var partHardener: Int = 0, // количество частей отвердителя

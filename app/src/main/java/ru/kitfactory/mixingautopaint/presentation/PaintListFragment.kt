@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kitfactory.mixingautopaint.R
 
@@ -26,14 +27,10 @@ class PaintListFragment : Fragment() {
 
         return view
     }
-
     override fun onStart() {
         super.onStart()
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         addButton.setOnClickListener {
-            fragmentTransaction?.replace(R.id.fragment_container_view, AddMixPaintFragment())
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
+           findNavController().navigate(R.id.action_paintListFragment_to_addMixPaintFragment)
         }
     }
 

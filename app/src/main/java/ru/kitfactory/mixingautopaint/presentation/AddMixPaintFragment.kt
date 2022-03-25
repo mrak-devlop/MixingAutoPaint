@@ -42,11 +42,6 @@ class AddMixPaintFragment : Fragment() {
         inDiluentPart=view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
         inMassPaint=view.findViewById(R.id.inMassPaintInput) as TextInputEditText
         saveButton=view.findViewById(R.id.saveButton) as Button
-        return view
-    }
-
-    override fun onStart() {
-        super.onStart()
         saveButton.setOnClickListener {
             // получаем данные из слоя
             val title = inTitle.text.toString()
@@ -56,7 +51,7 @@ class AddMixPaintFragment : Fragment() {
             val massPaint = inMassPaint.text.toString().toInt()
             // расчитываем краску
             val mixPaint = CalcMixUseCase(paintPart, hardenerPart, diluentPart, massPaint).execute()
-           //  сохраняем в данные
+            //  сохраняем в данные
             paint.titleMix=title
             paint.partPaint= paintPart
             paint.partHardener = hardenerPart
@@ -65,9 +60,13 @@ class AddMixPaintFragment : Fragment() {
             paint.massHardener = mixPaint.massHardener
             paint.paintPlusHardener = mixPaint.paintPlusHardener
             paint.massDiluent = mixPaint.massDiluent
-            SaveNewPaintUseCase(paint).execute()
+
+
         }
+        return view
     }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AddMixPaintViewModel::class.java)
