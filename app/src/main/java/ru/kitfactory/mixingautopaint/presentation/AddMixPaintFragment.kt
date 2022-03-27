@@ -13,15 +13,13 @@ import com.google.android.material.textfield.TextInputEditText
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
-import ru.kitfactory.mixingautopaint.domain.usecase.InputChekUseCase
+import ru.kitfactory.mixingautopaint.domain.usecase.InputCheckUseCase
 
 class AddMixPaintFragment : Fragment() {
 
 
 
-    companion object {
-        fun newInstance() = AddMixPaintFragment()
-    }
+
 
     private lateinit var viewModel: AddMixPaintViewModel
 
@@ -31,7 +29,6 @@ class AddMixPaintFragment : Fragment() {
     private lateinit var inHardenerPart: TextInputEditText
     private lateinit var inDiluentPart: TextInputEditText
     private lateinit var inMassPaint: TextInputEditText
-    private lateinit var paint: Paint
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,10 +63,10 @@ class AddMixPaintFragment : Fragment() {
                                      hardenerPart: Int,
                                      diluentPart: Int,
                                      massPaint: Int ) {
-        if (InputChekUseCase(title, paintPart, hardenerPart,diluentPart, massPaint).execute()){
+        if (InputCheckUseCase(title, paintPart, hardenerPart,diluentPart, massPaint).execute()){
             // расчитываем краску
             val mixPaint = CalcMixUseCase(paintPart, hardenerPart, diluentPart, massPaint).execute()
-            val paint: Paint = Paint(0,
+            val paint = Paint(0,
                 title,
                 paintPart,
                 hardenerPart,
