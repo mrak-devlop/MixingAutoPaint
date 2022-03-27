@@ -45,19 +45,19 @@ class AddMixPaintFragment : Fragment() {
         inMassPaint=view.findViewById(R.id.inMassPaintInput) as TextInputEditText
         saveButton=view.findViewById(R.id.saveButton) as Button
 
-//        saveButton.setOnClickListener {
-//            // получаем данные из фрагмента
-//            val title = inTitle.text.toString()
-//            val paintPart = inPaintPart.text.toString().toInt()
-//            val hardenerPart =  inHardenerPart.text.toString().toInt()
-//            val diluentPart = inDiluentPart.text.toString().toInt()
-//            val massPaint = inMassPaint.text.toString().toInt()
-//
-//            //  сохраняем в данные
-//            insertDataToDatabase(title, paintPart, hardenerPart, diluentPart, massPaint)
-//
-//
-//        }
+        saveButton.setOnClickListener {
+            // получаем данные из фрагмента
+            val title = inTitle.text.toString()
+            val paintPart = inPaintPart.text.toString().toInt()
+            val hardenerPart =  inHardenerPart.text.toString().toInt()
+            val diluentPart = inDiluentPart.text.toString().toInt()
+            val massPaint = inMassPaint.text.toString().toInt()
+
+            //  сохраняем в данные
+            insertDataToDatabase(title, paintPart, hardenerPart, diluentPart, massPaint)
+
+
+        }
         return view
     }
 
