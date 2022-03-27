@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/paintListFragment"
-        android:name="ru.kitfactory.mixingautopaint.presentation.PaintListFragment"
+        android:name="ru.kitfactory.mixingautopaint.presentation.listFragment.PaintListFragment"
         android:label="List"
         tools:layout="@layout/fragment_paint_list">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addMixPaintFragment"
-        android:name="ru.kitfactory.mixingautopaint.presentation.AddMixPaintFragment"
+        android:name="ru.kitfactory.mixingautopaint.presentation.addFragment.AddMixPaintFragment"
         android:label="Add"
         tools:layout="@layout/add_mix_paint_fragment">
         <action

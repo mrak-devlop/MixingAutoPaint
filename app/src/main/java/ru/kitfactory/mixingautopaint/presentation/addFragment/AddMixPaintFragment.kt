@@ -1,4 +1,4 @@
-package ru.kitfactory.mixingautopaint.presentation
+package ru.kitfactory.mixingautopaint.presentation.addFragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -71,7 +71,8 @@ class AddMixPaintFragment : Fragment() {
                 paintPart,
                 hardenerPart,
                 diluentPart,
-                massPaint, mixPaint.massPaint,
+                massPaint,
+                mixPaint.massPaint,
                 mixPaint.massHardener,
                 mixPaint.paintPlusHardener,
                 mixPaint.massDiluent)

@@ -1,4 +1,4 @@
-package ru.kitfactory.mixingautopaint.presentation
+package ru.kitfactory.mixingautopaint.presentation.listFragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
