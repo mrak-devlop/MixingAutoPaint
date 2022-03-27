@@ -12,8 +12,9 @@ data class Paint(
     var partHardener: Int = 0, // количество частей отвердителя
     var partDiluent: Int = 0, // колличество частей разбавителя
     var paintMass: Int = 0, // масса краски
-    var massHardener: Float = 0f, // масса отвердителя
+    var paintMassForMix: Float = 0f,
+    var massHardenerForMix: Float = 0f, // масса отвердителя
     var paintPlusHardener: Float = 0f, // масса краски плюс отвердитель
-    var massDiluent: Float = 0f // масса разбавителя
+    var massDiluentForMix: Float = 0f // масса разбавителя
 
 )

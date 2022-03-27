@@ -8,7 +8,6 @@ import androidx.room.TypeConverters
 
 
 @Database(entities = [Paint::class], version = 1, exportSchema = false)
-@TypeConverters (TypeConverters::class)
     abstract class LocalDatabase : RoomDatabase(){
     abstract fun dbDao(): DbDao
     companion object{

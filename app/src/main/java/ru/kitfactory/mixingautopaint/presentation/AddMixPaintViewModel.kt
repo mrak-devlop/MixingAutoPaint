@@ -6,23 +6,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kitfactory.mixingautopaint.data.storage.DbSource
+import ru.kitfactory.mixingautopaint.data.repository.LocalRepository
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 
 class AddMixPaintViewModel(application: Application) : AndroidViewModel(application) {
-    private val getPaints: LiveData<List<Paint>>
-    private var repository: DbSource
+    private var repository: LocalRepository
 
     init {
         val dbDao = LocalDatabase.getDatabase(application).dbDao()
-        repository = DbSource(dbDao)
-        getPaints = repository.getPaints
+        repository = LocalRepository(dbDao)
     }
 
     fun addPaint(paint: Paint) {
         viewModelScope.launch(Dispatchers.IO){
-            repository.addPaint(paint)
+            repository.addNewPaint(paint)
         }
     }
 

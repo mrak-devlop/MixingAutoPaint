@@ -1,7 +1,6 @@
 package ru.kitfactory.mixingautopaint.domain.usecase
 
 import ru.kitfactory.mixingautopaint.domain.models.CompleteMixData
-import ru.kitfactory.mixingautopaint.domain.models.DataMix
 
 class CalcMixUseCase(val paintPart : Int,val hardenerPart : Int,
                      val diluentPart : Int, val paintMass : Int) {
