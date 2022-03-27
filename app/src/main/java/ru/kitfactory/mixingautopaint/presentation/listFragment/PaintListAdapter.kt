@@ -9,7 +9,7 @@ import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 
 class PaintListAdapter():RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
-    private val paintList = emptyList<Paint>()
+    private var paintList = emptyList<Paint>()
     class ViewHolder(view:View): RecyclerView.ViewHolder(view){
         val titleText: TextView
         val partsText: TextView
@@ -42,5 +42,10 @@ class PaintListAdapter():RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
        return paintList.size
+    }
+
+    fun setData(paint: List<Paint>) {
+        this.paintList = paint
+        notifyDataSetChanged()
     }
 }
