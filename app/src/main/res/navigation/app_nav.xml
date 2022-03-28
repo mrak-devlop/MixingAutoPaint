@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_paint_list">
         <action
             android:id="@+id/action_paintListFragment_to_addMixPaintFragment"
-            app:destination="@id/addMixPaintFragment" />
+            app:destination="@id/addMixPaintFragment"
+            app:enterAnim="@anim/from_list"
+            app:popEnterAnim="@anim/to_list" />
     </fragment>
     <fragment
         android:id="@+id/addMixPaintFragment"
@@ -21,6 +23,8 @@
         tools:layout="@layout/add_mix_paint_fragment">
         <action
             android:id="@+id/action_addMixPaintFragment_to_paintListFragment"
-            app:destination="@id/paintListFragment" />
+            app:destination="@id/paintListFragment"
+            app:enterAnim="@anim/to_list"
+            app:popEnterAnim="@anim/from_list" />
     </fragment>
 </navigation>
