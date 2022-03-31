@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -24,6 +25,8 @@ class PaintListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_paint_list, container, false)
         addButton = view.findViewById(R.id.addMixButton) as FloatingActionButton
         recyclerView = view.findViewById(R.id.paint_mix_recycler_view) as RecyclerView
+
+
         return view
     }
     override fun onStart() {
