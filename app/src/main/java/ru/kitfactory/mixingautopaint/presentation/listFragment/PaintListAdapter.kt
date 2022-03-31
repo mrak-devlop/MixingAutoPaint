@@ -12,17 +12,12 @@ import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 const val space = " "
 const val colon = ":"
 
-class PaintListAdapter():RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
+class PaintListAdapter:RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
     private var paintList = emptyList<Paint>()
     class ViewHolder(view:View): RecyclerView.ViewHolder(view){
-        val titleText: TextView
-        val partsText: TextView
-        val mixText: TextView
-        init {
-            titleText = view.findViewById(R.id.title_text)
-            partsText = view.findViewById(R.id.parts_text)
-            mixText = view.findViewById(R.id.mix_text)
-        }
+        val titleText: TextView = view.findViewById(R.id.title_text)
+        val partsText: TextView = view.findViewById(R.id.parts_text)
+        val mixText: TextView = view.findViewById(R.id.mix_text)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,9 +29,9 @@ class PaintListAdapter():RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = paintList[position]
 
-        val printGramm = Resources.getSystem().getString(R.string.gramm_in_list)
+        val printGram = Resources.getSystem().getString(R.string.gramm_in_list)
         val printTitle = (currentItem.titleMix + space +
-                currentItem.paintMass.toString() + space + printGramm)
+                currentItem.paintMass.toString() + space + printGram)
         holder.titleText.text = printTitle
 
         val partsTitle = Resources.getSystem().getString(R.string.parts_in_list)
