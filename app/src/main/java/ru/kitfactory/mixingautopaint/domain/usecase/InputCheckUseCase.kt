@@ -7,6 +7,7 @@ class InputCheckUseCase(private val title: String,
                         private val hardenerPart: Int,
                         private val diluentPart: Int,
                         private val massPaint: Int) {
+
     fun execute() : Boolean {
         return !(title == none &&
                 paintPart.toString() == none &&
