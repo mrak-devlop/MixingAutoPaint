@@ -14,6 +14,6 @@
     <string name="mix1_list">"В тару налить "</string>
     <string name="mix2_list">"г краски долить "</string>
     <string name="mix3_list">"г отвердителя = "</string>
-    <string name="mix4_list">"и долить "</string>
+    <string name="mix4_list">" и долить "</string>
     <string name="mix5_list">г разбавителя</string>
 </resources>

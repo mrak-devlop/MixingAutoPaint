@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kitfactory.mixingautopaint.R
+import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 
 class PaintListFragment : Fragment() {
     private lateinit var addButton: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: PaintListViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +26,7 @@ class PaintListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.paint_mix_recycler_view) as RecyclerView
 
 
+
         return view
     }
     override fun onStart() {
@@ -33,7 +34,12 @@ class PaintListFragment : Fragment() {
         addButton.setOnClickListener {
            findNavController().navigate(R.id.action_paintListFragment_to_addMixPaintFragment)
         }
-        val adapter = PaintListAdapter()
+        val textData = PrintResText (
+        getString(R.string.gramm_in_list),
+            getString(R.string.parts_in_list), getString(R.string.mix1_list),
+            getString(R.string.mix2_list), getString(R.string.mix3_list),
+            getString(R.string.mix4_list),getString(R.string.mix5_list))
+        val adapter = PaintListAdapter(textData)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel.readAllData.observe(viewLifecycleOwner, { paint ->

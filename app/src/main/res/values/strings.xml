@@ -8,12 +8,12 @@
     <string name="bt_save">Calc and Save</string>
     <string name="error_msg">All fields are not filled, if the component is missing enter 0</string>
     <string name="in_title">Enter Title</string>
-    <string name="gramm_in_list">Gramm</string>
+    <string name="gramm_in_list">Gram</string>
     <string name="parts_in_list">mixing ratio (paint, hardener, diluent)</string>
     <string name="mix1_list">"Pour "</string>
-    <string name="mix2_list">"g of paint into the container, add "</string>
-    <string name="mix3_list">"g of hardener = "</string>
-    <string name="mix4_list">"и долить "</string>
-    <string name="mix5_list">g of diluent</string>
+    <string name="mix2_list">"gm of paint into the container, add "</string>
+    <string name="mix3_list">"gm of hardener = "</string>
+    <string name="mix4_list">" and top up "</string>
+    <string name="mix5_list">gm of diluent</string>
 
 </resources>
