@@ -32,15 +32,18 @@ class PaintListFragment : Fragment() {
     }
     override fun onStart() {
         super.onStart()
+        // вызываем фрагмент добавления краски
         addButton.setOnClickListener {
             findNavController().navigate(R.id.action_paintListFragment_to_addMixPaintFragment)
         }
+        // получаем текстовые данные из строковых ресурсов
         val textData = PrintResText(
             getString(R.string.gramm_in_list),
             getString(R.string.parts_in_list), getString(R.string.mix1_list),
             getString(R.string.mix2_list), getString(R.string.mix3_list),
             getString(R.string.mix4_list), getString(R.string.mix5_list)
         )
+        // заполняем recyclerview
         val adapter = PaintListAdapter(textData)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -48,20 +51,23 @@ class PaintListFragment : Fragment() {
             adapter.setData(paint)
         })
 
+        // удаление свайпом вправо
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             0, ItemTouchHelper.RIGHT
         ) {
+            // отключаем перетаскивание
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean = false
-
+            // обработчик свайпа
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.removePaint(viewHolder.adapterPosition)
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
             }
         }
+        // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
         myHelper.attachToRecyclerView(recyclerView)
     }

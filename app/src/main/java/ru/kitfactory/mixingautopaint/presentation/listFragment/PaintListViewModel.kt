@@ -14,12 +14,12 @@ import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 class PaintListViewModel(application: Application) : AndroidViewModel(application) {
     val readAllData: LiveData<List<Paint>>
     private var repository: LocalRepository
-
     init {
         val dbDao = LocalDatabase.getDatabase(application).dbDao()
         repository = LocalRepository(dbDao)
         readAllData = repository.getPaints
     }
+
     fun removePaint(id: Int){
         viewModelScope.launch(Dispatchers.IO){
             repository.removePaint(id)
