@@ -21,4 +21,7 @@ interface DbDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addPaint(paint: Paint)
 
+    @Delete
+    suspend fun removePaint(paint: Paint)
+
 }

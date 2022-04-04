@@ -14,8 +14,8 @@ import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 const val space = " "
 const val colon = ":"
 
-class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
-    private var paintList = emptyList<Paint>()
+class PaintListAdapter(val textData: PrintResText):RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
+    var paintList = emptyList<Paint>()
     class ViewHolder(view:View): RecyclerView.ViewHolder(view){
         val titleText: TextView
         val partsText: TextView
