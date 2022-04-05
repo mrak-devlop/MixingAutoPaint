@@ -12,6 +12,7 @@ import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 
 
 class PaintListViewModel(application: Application) : AndroidViewModel(application) {
+    //активируем и считываем данные из репозитория
     val readAllData: LiveData<List<Paint>>
     private var repository: LocalRepository
     init {
@@ -20,6 +21,7 @@ class PaintListViewModel(application: Application) : AndroidViewModel(applicatio
         readAllData = repository.getPaints
     }
 
+    // удаляем данные из репозитория в корутине
     fun removePaint(id: Int){
         viewModelScope.launch(Dispatchers.IO){
             repository.removePaint(id)
