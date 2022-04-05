@@ -13,7 +13,11 @@
     <string name="mix1_list">"Pour "</string>
     <string name="mix2_list">"gm of paint into the container, add "</string>
     <string name="mix3_list">"gm of hardener = "</string>
-    <string name="mix4_list">" and top up "</string>
+    <string name="mix4_list">"gm and top up "</string>
     <string name="mix5_list">gm of diluent</string>
+    <string name="confirm_delete">YES</string>
+    <string name="cancel_delete">NO</string>
+    <string name="msg_delete">Are you sure to want to delete</string>
+    <string name="title_delete">Confirm delete?</string>
 
 </resources>

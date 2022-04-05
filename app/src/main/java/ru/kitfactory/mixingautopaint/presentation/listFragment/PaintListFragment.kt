@@ -75,19 +75,19 @@ class PaintListFragment : Fragment() {
                 // создаём диалог подтверждения
                 val builder = AlertDialog.Builder(requireContext())
                 // если подтверждено удаляем
-                builder.setPositiveButton("Yes"){_, _ ->
+                builder.setPositiveButton(getText(R.string.confirm_delete)){_, _ ->
                     viewModel.removePaint(viewHolder.adapterPosition)
                     adapter.notifyItemRemoved(viewHolder.adapterPosition)
                 }
                 // если не подтверждено ничего не делаем
-                builder.setNegativeButton("NO"){_, _ ->
+                builder.setNegativeButton(getText(R.string.cancel_delete)){_, _ ->
                     viewModel.readAllData.observe(viewLifecycleOwner, { paint ->
                         adapter.setData(paint)
                     })
                 }
                 // устанавливаем заголовок и текст диалога
-                builder.setTitle("Confirm delete?")
-                builder.setMessage("Are you sure to want to delete")
+                builder.setTitle(getText(R.string.title_delete))
+                builder.setMessage(getText(R.string.msg_delete))
                 // показать диалог
                 builder.create().show()
             }
