@@ -17,7 +17,9 @@
     <string name="mix5_list">gm of diluent</string>
     <string name="confirm_delete">YES</string>
     <string name="cancel_delete">NO</string>
-    <string name="msg_delete">Are you sure to want to delete</string>
-    <string name="title_delete">Confirm delete?</string>
+    <string name="msg_delete">Are you sure to want to delete?</string>
+    <string name="title_delete">Confirm delete</string>
+    <string name="nav_list">List of paint</string>
+    <string name="nav_add">Add new mix paint</string>
 
 </resources>

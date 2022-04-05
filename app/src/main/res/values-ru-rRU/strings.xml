@@ -18,6 +18,8 @@
     <string name="mix5_list">г разбавителя</string>
     <string name="confirm_delete">ДА</string>
     <string name="cancel_delete">НЕТ</string>
-    <string name="msg_delete">Вы уверены, что хотите удалить</string>
-    <string name="title_delete">Подтвердить удаление?</string>
+    <string name="msg_delete">Вы уверены, что хотите удалить?</string>
+    <string name="title_delete">Подтвердите удаление</string>
+    <string name="nav_list">Список красок</string>
+    <string name="nav_add">Добавить новую смесь краски</string>
 </resources>
