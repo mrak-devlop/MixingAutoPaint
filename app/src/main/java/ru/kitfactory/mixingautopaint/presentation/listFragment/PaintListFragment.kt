@@ -1,14 +1,15 @@
 package ru.kitfactory.mixingautopaint.presentation.listFragment
 
 import android.annotation.SuppressLint
+import android.graphics.*
 import android.graphics.drawable.Drawable
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,6 @@ class PaintListFragment : Fragment() {
     private lateinit var viewModel: PaintListViewModel
     private lateinit var trashBinIcon: Drawable
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +35,7 @@ class PaintListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.paint_mix_recycler_view) as RecyclerView
         @SuppressLint("UseCompatLoadingForDrawables")
         trashBinIcon = activity?.resources?.getDrawable(
-            drawable.ic_baseline_delete_forever_24, null) as Drawable
+            drawable.ic_baseline_delete_forever, null) as Drawable
         return view
     }
     override fun onStart() {
@@ -63,7 +63,6 @@ class PaintListFragment : Fragment() {
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             0, ItemTouchHelper.RIGHT
         ) {
-
             // отключаем перетаскивание
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -91,6 +90,33 @@ class PaintListFragment : Fragment() {
                 // показать диалог
                 builder.create().show()
             }
+
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
+                                     viewHolder: RecyclerView.ViewHolder,
+                                     dX: Float, dY: Float, actionState: Int,
+                                     isCurrentlyActive: Boolean)
+            {
+                val itemView = viewHolder.itemView
+                val itemHeight = itemView.bottom - itemView.top
+                val intrinsicWidth =  trashBinIcon.intrinsicWidth
+                val intrinsicHeight = trashBinIcon.intrinsicHeight
+                val trashBinIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
+                val trashBinIconMargin = (itemHeight - intrinsicHeight) / 2
+                val trashBinIconLeft = itemView.left + trashBinIconMargin - intrinsicWidth
+                val trashBinIconRight = itemView.left + trashBinIconMargin
+                val trashBinIconBottom = trashBinIconTop + intrinsicHeight
+                trashBinIcon.bounds = Rect(trashBinIconLeft, trashBinIconTop,
+                    trashBinIconRight, trashBinIconBottom)
+                trashBinIcon.draw(c)
+                super.onChildDraw(c, recyclerView, viewHolder,
+                    dX, dY, actionState, isCurrentlyActive)
+            }
+
+            override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
+                return 0.7f
+            }
+
+
         }
         // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
