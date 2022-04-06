@@ -17,12 +17,7 @@ import ru.kitfactory.mixingautopaint.domain.usecase.InputCheckUseCase
 
 class AddMixPaintFragment : Fragment() {
 
-
-
-
-
     private lateinit var viewModel: AddMixPaintViewModel
-
     private lateinit var saveButton: Button
     private lateinit var inTitle: TextInputEditText
     private lateinit var inPaintPart: TextInputEditText
@@ -86,6 +81,7 @@ class AddMixPaintFragment : Fragment() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AddMixPaintViewModel::class.java)

@@ -21,5 +21,7 @@
     <string name="title_delete">Confirm delete</string>
     <string name="nav_list">List of paint</string>
     <string name="nav_add">Add new mix paint</string>
+    <string name="detail_edit">edit</string>
+    <string name="detail_notification">show in notification</string>
 
 </resources>

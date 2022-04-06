@@ -22,4 +22,6 @@
     <string name="title_delete">Подтвердите удаление</string>
     <string name="nav_list">Список красок</string>
     <string name="nav_add">Добавить новую смесь краски</string>
+    <string name="detail_edit">редактировать</string>
+    <string name="detail_notification">показать в уведомлениях</string>
 </resources>

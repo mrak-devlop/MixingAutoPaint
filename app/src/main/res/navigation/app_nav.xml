@@ -15,6 +15,9 @@
             app:destination="@id/addMixPaintFragment"
             app:enterAnim="@anim/from_list"
             app:popEnterAnim="@anim/to_list" />
+        <action
+            android:id="@+id/action_paintListFragment_to_detailMixPaintFragment"
+            app:destination="@id/detailMixPaintFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMixPaintFragment"
@@ -26,5 +29,14 @@
             app:destination="@id/paintListFragment"
             app:enterAnim="@anim/to_list"
             app:popEnterAnim="@anim/from_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMixPaintFragment"
+        android:name="ru.kitfactory.mixingautopaint.presentation.detailFragment.DetailMixPaintFragment"
+        android:label="detail_mix_paint_fragment"
+        tools:layout="@layout/detail_mix_paint_fragment" >
+        <action
+            android:id="@+id/action_detailMixPaintFragment_to_paintListFragment"
+            app:destination="@id/paintListFragment" />
     </fragment>
 </navigation>
