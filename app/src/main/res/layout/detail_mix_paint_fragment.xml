@@ -40,7 +40,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:text="@string/detail_notification" />
+                        android:text="@string/detail_notification"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
@@ -50,7 +51,7 @@
                     android:text="Parts"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,7 +60,7 @@
                     android:text="Mass for Parts"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
