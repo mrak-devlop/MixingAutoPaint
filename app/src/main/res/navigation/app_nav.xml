@@ -38,5 +38,9 @@
         <action
             android:id="@+id/action_detailMixPaintFragment_to_paintListFragment"
             app:destination="@id/paintListFragment" />
+        <argument
+            android:name="idItem"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

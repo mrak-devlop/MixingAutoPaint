@@ -44,6 +44,7 @@ class PaintListFragment : Fragment() {
         addButton.setOnClickListener {
             findNavController().navigate(R.id.action_paintListFragment_to_addMixPaintFragment)
         }
+
         // получаем текстовые данные из строковых ресурсов для отправки в адаптер
         val textData = PrintResText(
             getString(R.string.gramm_in_list),
@@ -121,6 +122,7 @@ class PaintListFragment : Fragment() {
         // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
         myHelper.attachToRecyclerView(recyclerView)
+        
     }
 
         @Deprecated("Deprecated in Java")

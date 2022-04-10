@@ -1,8 +1,12 @@
 package ru.kitfactory.mixingautopaint.data.storage.db
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 @Entity(tableName = "mix_paint_table") // название таблицы бд
 data class Paint(
     @PrimaryKey(autoGenerate = true)
@@ -17,4 +21,4 @@ data class Paint(
     var paintPlusHardener: Float = 0f, // масса краски плюс отвердитель
     var massDiluentForMix: Float = 0f // масса разбавителя
 
-)
+) : Parcelable
