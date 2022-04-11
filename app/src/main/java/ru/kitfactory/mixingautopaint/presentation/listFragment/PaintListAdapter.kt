@@ -41,14 +41,18 @@ class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = paintList[position]
-        val printTitle = (currentItem.titleMix + SPACE +
-                currentItem.paintMass.toString() + SPACE + textData.printGram)
+        val titleMix = currentItem.titleMix
+        val paintMass = currentItem.paintMass.toString()
+        val printGram = textData.printGram
+        val printTitle = (titleMix + SPACE + paintMass + SPACE + printGram)
         holder.titleText.text = printTitle
 
         val partsTitle = textData.partsTitle
-        val printParts = (partsTitle + SPACE + currentItem.partPaint.toString() + COLON +
-                currentItem.partHardener.toString() + COLON +
-                currentItem.partDiluent.toString())
+        val partPaint = currentItem.partPaint.toString()
+        val partHardener = currentItem.partHardener.toString()
+        val partDiluent = currentItem.partDiluent.toString()
+        val printParts = (partsTitle + SPACE + partPaint +
+                COLON + partHardener + COLON + partDiluent)
         holder.partsText.text = printParts
 
         val text1Mix = textData.text1Mix
@@ -56,11 +60,16 @@ class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<
         val text3Mix = textData.text3Mix
         val text4Mix = textData.text4Mix
         val text5Mix = textData.text5Mix
-        val printMix = (text1Mix + currentItem.paintMassForMix.toString() + text2Mix +
-                currentItem.massHardenerForMix.toString() + text3Mix +
-                currentItem.paintPlusHardener.toString() + text4Mix +
-                currentItem.massDiluentForMix + text5Mix)
+        val paintMassForMix = currentItem.paintMassForMix.toString()
+        val massHardenerForMix = currentItem.massHardenerForMix.toString()
+        val paintPlusHardener = currentItem.paintPlusHardener.toString()
+        val massDiluentForMix = currentItem.massDiluentForMix.toString()
+        val printMix = (text1Mix + paintMassForMix + text2Mix +
+                massHardenerForMix + text3Mix +
+                paintPlusHardener + text4Mix +
+                massDiluentForMix + text5Mix)
         holder.mixText.text = printMix
+
         holder.rowLayout.setOnClickListener {
             val directions = PaintListFragmentDirections
                 .actionPaintListFragmentToDetailMixPaintFragment(currentItem)
@@ -68,10 +77,10 @@ class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<
         }
 
     }
+
     override fun getItemCount(): Int {
        return paintList.size
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(paint: List<Paint>) {
