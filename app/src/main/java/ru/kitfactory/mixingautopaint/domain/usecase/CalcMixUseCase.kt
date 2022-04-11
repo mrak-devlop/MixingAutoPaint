@@ -2,14 +2,15 @@ package ru.kitfactory.mixingautopaint.domain.usecase
 
 import ru.kitfactory.mixingautopaint.domain.models.CompleteMixData
 
-class CalcMixUseCase(val paintPart : Int,val hardenerPart : Int,
-                     val diluentPart : Int, val paintMass : Int) {
+class CalcMixUseCase(
+    private val paintPart : Int, private val hardenerPart : Int,
+    private val diluentPart : Int, private val paintMass : Int) {
     fun execute() : CompleteMixData {
 
 
         //считаем массу одной части
         val onePartMass =
-            paintMass / (paintPart + hardenerPart + diluentPart)
+            paintMass / (paintPart + hardenerPart + this.diluentPart)
 
         //считаем массу краски и округляем до одного знака после запятой
         val massPaint =
@@ -27,7 +28,7 @@ class CalcMixUseCase(val paintPart : Int,val hardenerPart : Int,
 
         return CompleteMixData(massPaint.toFloat(),
             massHardener.toFloat(), paintPlusHardener.toFloat(),
-            massDiluent.toFloat(), paintMass.toDouble().toFloat())
+            massDiluent.toFloat(), this.paintMass.toDouble().toFloat())
     }
 
 }

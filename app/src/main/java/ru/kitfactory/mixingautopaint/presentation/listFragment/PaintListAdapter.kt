@@ -2,28 +2,33 @@ package ru.kitfactory.mixingautopaint.presentation.listFragment
 
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 
-const val space = " "
-const val colon = ":"
+const val SPACE = " "
+const val COLON = ":"
 
-class PaintListAdapter(val textData: PrintResText):RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
-    var paintList = emptyList<Paint>()
+class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
+    private var paintList = emptyList<Paint>()
     class ViewHolder(view:View): RecyclerView.ViewHolder(view){
         val titleText: TextView
         val partsText: TextView
         val mixText: TextView
+        val rowLayout: LinearLayout
         init {
             titleText = view.findViewById(R.id.title_text)
             partsText = view.findViewById(R.id.parts_text)
             mixText = view.findViewById(R.id.mix_text)
+            rowLayout= view.findViewById(R.id.row_layout)
         }
     }
 
@@ -36,13 +41,13 @@ class PaintListAdapter(val textData: PrintResText):RecyclerView.Adapter<PaintLis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = paintList[position]
-        val printTitle = (currentItem.titleMix + space +
-                currentItem.paintMass.toString() + space + textData.printGram)
+        val printTitle = (currentItem.titleMix + SPACE +
+                currentItem.paintMass.toString() + SPACE + textData.printGram)
         holder.titleText.text = printTitle
 
         val partsTitle = textData.partsTitle
-        val printParts = (partsTitle + space + currentItem.partPaint.toString() + colon +
-                currentItem.partHardener.toString() + colon +
+        val printParts = (partsTitle + SPACE + currentItem.partPaint.toString() + COLON +
+                currentItem.partHardener.toString() + COLON +
                 currentItem.partDiluent.toString())
         holder.partsText.text = printParts
 
@@ -56,13 +61,19 @@ class PaintListAdapter(val textData: PrintResText):RecyclerView.Adapter<PaintLis
                 currentItem.paintPlusHardener.toString() + text4Mix +
                 currentItem.massDiluentForMix + text5Mix)
         holder.mixText.text = printMix
+        holder.rowLayout.setOnClickListener {
+            val directions = PaintListFragmentDirections
+                .actionPaintListFragmentToDetailMixPaintFragment(currentItem)
+            holder.itemView.findNavController().navigate(directions)
+        }
 
     }
-
     override fun getItemCount(): Int {
        return paintList.size
     }
 
+
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(paint: List<Paint>) {
         this.paintList = paint
         notifyDataSetChanged()

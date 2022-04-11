@@ -9,7 +9,7 @@
     <string name="bt_save">Расчитать и Сохранить</string>
     <string name="error_msg">Не заполнены все поля, если компонент отсутствует введите 0</string>
     <string name="in_title">Введите Название</string>
-    <string name="gramm_in_list">Грамм</string>
+    <string name="gram_in_list">Грамм</string>
     <string name="parts_in_list">Соотношение частей для смешивания (краска, отвердитель, разбавитель)</string>
     <string name="mix1_list">"В тару налить "</string>
     <string name="mix2_list">"г краски долить "</string>

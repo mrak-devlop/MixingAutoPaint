@@ -39,8 +39,7 @@
             android:id="@+id/action_detailMixPaintFragment_to_paintListFragment"
             app:destination="@id/paintListFragment" />
         <argument
-            android:name="idItem"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:name="currentPaint"
+            app:argType="ru.kitfactory.mixingautopaint.data.storage.db.Paint" />
     </fragment>
 </navigation>

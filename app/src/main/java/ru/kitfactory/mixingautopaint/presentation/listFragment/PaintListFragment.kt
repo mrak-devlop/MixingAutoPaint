@@ -47,7 +47,7 @@ class PaintListFragment : Fragment() {
 
         // получаем текстовые данные из строковых ресурсов для отправки в адаптер
         val textData = PrintResText(
-            getString(R.string.gramm_in_list),
+            getString(R.string.gram_in_list),
             getString(R.string.parts_in_list), getString(R.string.mix1_list),
             getString(R.string.mix2_list), getString(R.string.mix3_list),
             getString(R.string.mix4_list), getString(R.string.mix5_list)
@@ -128,7 +128,7 @@ class PaintListFragment : Fragment() {
         @Deprecated("Deprecated in Java")
         override fun onActivityCreated(savedInstanceState: Bundle?) {
             super.onActivityCreated(savedInstanceState)
-            viewModel = ViewModelProvider(this).get(PaintListViewModel::class.java)
+            viewModel = ViewModelProvider(this)[PaintListViewModel::class.java]
 
         }
 

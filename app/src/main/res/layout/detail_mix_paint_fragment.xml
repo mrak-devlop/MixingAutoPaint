@@ -7,7 +7,7 @@
     tools:context=".presentation.detailFragment.DetailMixPaintFragment">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/item_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp">
@@ -31,6 +31,7 @@
                     android:orientation="horizontal">
                     <!-- Title, secondary and supporting text -->
                     <TextView
+                        android:id="@+id/detail_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tittle + mass"
@@ -45,6 +46,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/detail_parts_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -54,6 +56,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/detail_mix_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
