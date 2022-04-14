@@ -1,24 +1,27 @@
 package ru.kitfactory.mixingautopaint.presentation.detailFragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import ru.kitfactory.mixingautopaint.R
+
 
 const val SPACE = " "
 const val COLON = ":"
 
 class DetailMixPaintFragment : Fragment() {
     private val args by navArgs<DetailMixPaintFragmentArgs>()
-    private lateinit var viewModel: DetailMixPaintViewModel
     private lateinit var titleText: TextView
     private lateinit var partsText: TextView
     private lateinit var mixText: TextView
+    private lateinit var checkBoxNotification: CheckBox
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +31,7 @@ class DetailMixPaintFragment : Fragment() {
         titleText = view.findViewById(R.id.detail_title_text)
         partsText = view.findViewById(R.id.detail_parts_text)
         mixText = view.findViewById(R.id.detail_mix_text)
+        checkBoxNotification = view.findViewById(R.id.show_notification)
 
         val titleMix = args.currentPaint.titleMix
         val paintMass = args.currentPaint.paintMass.toString()
@@ -56,14 +60,7 @@ class DetailMixPaintFragment : Fragment() {
                 massHardenerForMix + text3Mix + paintPlusHardener +
                 text4Mix + massDiluentForMix + text5Mix)
         mixText.text = printMix
-        
         return view
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[DetailMixPaintViewModel::class.java]
     }
 
 }

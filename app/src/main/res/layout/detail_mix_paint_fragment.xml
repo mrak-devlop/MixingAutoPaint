@@ -38,8 +38,10 @@
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
-                        android:layout_width="match_parent"
+                        android:id="@+id/show_notification"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:checked="false"
                         android:text="@string/detail_notification"
                         android:textSize="12sp" />

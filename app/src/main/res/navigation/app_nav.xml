@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/detailMixPaintFragment"
         android:name="ru.kitfactory.mixingautopaint.presentation.detailFragment.DetailMixPaintFragment"
-        android:label="detail_mix_paint_fragment"
+        android:label="@string/detail_name_fragment"
         tools:layout="@layout/detail_mix_paint_fragment" >
         <action
             android:id="@+id/action_detailMixPaintFragment_to_paintListFragment"

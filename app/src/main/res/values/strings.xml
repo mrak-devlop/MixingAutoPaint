@@ -23,5 +23,6 @@
     <string name="nav_add">Add new mix paint</string>
     <string name="detail_edit">edit</string>
     <string name="detail_notification">show in notification</string>
+    <string name="detail_name_fragment">Paint mix detail view</string>
 
 </resources>

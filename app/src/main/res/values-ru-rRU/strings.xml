@@ -24,4 +24,5 @@
     <string name="nav_add">Добавить новую смесь краски</string>
     <string name="detail_edit">редактировать</string>
     <string name="detail_notification">показать в уведомлениях</string>
+    <string name="detail_name_fragment">Детальный вид смеси краски</string>
 </resources>
