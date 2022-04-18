@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import ru.kitfactory.mixingautopaint.R
 
 
-open class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

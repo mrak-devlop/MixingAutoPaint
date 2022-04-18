@@ -53,12 +53,7 @@ class PaintListFragment : Fragment() {
             getString(R.string.mix4_list), getString(R.string.mix5_list)
         )
         // заполняем recyclerview
-        val adapter = PaintListAdapter(textData)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.readAllData.observe(viewLifecycleOwner, { paint ->
-            adapter.setData(paint)
-        })
+        loadListPaint(textData)
 
         // удаление свайпом вправо
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
@@ -76,14 +71,11 @@ class PaintListFragment : Fragment() {
                 val builder = AlertDialog.Builder(requireContext())
                 // если подтверждено удаляем
                 builder.setPositiveButton(getText(R.string.confirm_delete)){_, _ ->
-                    viewModel.removePaint(viewHolder.adapterPosition)
-                    adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                    deletePaint(textData, viewHolder)
                 }
                 // если не подтверждено ничего не делаем
                 builder.setNegativeButton(getText(R.string.cancel_delete)){_, _ ->
-                    viewModel.readAllData.observe(viewLifecycleOwner, { paint ->
-                        adapter.setData(paint)
-                    })
+                    loadListPaint(textData)
                 }
                 // устанавливаем заголовок и текст диалога
                 builder.setTitle(getText(R.string.title_delete))
@@ -131,6 +123,21 @@ class PaintListFragment : Fragment() {
             viewModel = ViewModelProvider(this)[PaintListViewModel::class.java]
 
         }
+
+    fun loadListPaint(textData: PrintResText){
+        val adapter = PaintListAdapter(textData)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.readAllData.observe(viewLifecycleOwner, { paint ->
+            adapter.setData(paint)
+        })
+    }
+
+    fun deletePaint(textData: PrintResText, viewHolder: RecyclerView.ViewHolder){
+        val adapter = PaintListAdapter(textData)
+        viewModel.removePaint(viewHolder.adapterPosition)
+        adapter.notifyItemRemoved(viewHolder.adapterPosition)
+    }
 
 
 }
