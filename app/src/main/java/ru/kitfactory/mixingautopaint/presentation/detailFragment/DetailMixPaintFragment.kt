@@ -1,5 +1,6 @@
 package ru.kitfactory.mixingautopaint.presentation.detailFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import ru.kitfactory.mixingautopaint.R
 
@@ -16,12 +16,18 @@ const val SPACE = " "
 const val COLON = ":"
 
 class DetailMixPaintFragment : Fragment() {
+
     private val args by navArgs<DetailMixPaintFragmentArgs>()
     private lateinit var titleText: TextView
     private lateinit var partsText: TextView
     private lateinit var mixText: TextView
     private lateinit var checkBoxNotification: CheckBox
+    private var callbacks: Callbacks? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +66,23 @@ class DetailMixPaintFragment : Fragment() {
                 massHardenerForMix + text3Mix + paintPlusHardener +
                 text4Mix + massDiluentForMix + text5Mix)
         mixText.text = printMix
-        return view
+        checkBoxNotification.setOnClickListener {
+            if (checkBoxNotification.isChecked)
+                callbacks?.onShowNotification(printTitle, printMix)
+            else{
+                callbacks?.onDeleteNotification()
+            }
+
+        }
+            return view
+        }
+
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
     }
+
+
+
 
 }
