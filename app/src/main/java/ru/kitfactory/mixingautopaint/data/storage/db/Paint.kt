@@ -12,7 +12,7 @@ data class Paint(
     @PrimaryKey(autoGenerate = true)
     val id: Int, //уникальное поле
     var titleMix: String = "", // заголовок
-    var partPaint : Int = 0, //количество частей краски
+    var partPaint: Int = 0, //количество частей краски
     var partHardener: Int = 0, // количество частей отвердителя
     var partDiluent: Int = 0, // колличество частей разбавителя
     var paintMass: Int = 0, // масса краски

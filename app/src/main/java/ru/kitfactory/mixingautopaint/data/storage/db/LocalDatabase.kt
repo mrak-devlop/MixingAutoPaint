@@ -7,20 +7,23 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [Paint::class], version = 1, exportSchema = false)
-    abstract class LocalDatabase : RoomDatabase(){
+abstract class LocalDatabase : RoomDatabase() {
     abstract fun dbDao(): DbDao
-    companion object{
+
+    companion object {
         @Volatile
         private var INSTANCE: LocalDatabase? = null
-        fun getDatabase(context: Context): LocalDatabase{
+        fun getDatabase(context: Context): LocalDatabase {
             val tempInstance = INSTANCE
-            if (tempInstance != null){
+            if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this){
-                val instance = Room.databaseBuilder(context.applicationContext,
-                LocalDatabase::class.java,
-                "mix_paint_database").build()
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    LocalDatabase::class.java,
+                    "mix_paint_database"
+                ).build()
                 INSTANCE = instance
                 return instance
             }

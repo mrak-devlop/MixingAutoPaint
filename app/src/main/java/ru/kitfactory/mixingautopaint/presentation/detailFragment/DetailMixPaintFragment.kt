@@ -69,20 +69,18 @@ class DetailMixPaintFragment : Fragment() {
         checkBoxNotification.setOnClickListener {
             if (checkBoxNotification.isChecked)
                 callbacks?.onShowNotification(printTitle, printMix)
-            else{
+            else {
                 callbacks?.onDeleteNotification()
             }
 
         }
-            return view
-        }
+        return view
+    }
 
     override fun onDetach() {
         super.onDetach()
         callbacks = null
     }
-
-
 
 
 }

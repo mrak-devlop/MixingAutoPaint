@@ -1,7 +1,6 @@
 package ru.kitfactory.mixingautopaint.presentation.listFragment
 
 
-
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -17,18 +16,21 @@ import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 const val SPACE = " "
 const val COLON = ":"
 
-class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
+class PaintListAdapter(private val textData: PrintResText) :
+    RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
     private var paintList = emptyList<Paint>()
-    class ViewHolder(view:View): RecyclerView.ViewHolder(view){
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleText: TextView
         val partsText: TextView
         val mixText: TextView
         val rowLayout: LinearLayout
+
         init {
             titleText = view.findViewById(R.id.title_text)
             partsText = view.findViewById(R.id.parts_text)
             mixText = view.findViewById(R.id.mix_text)
-            rowLayout= view.findViewById(R.id.row_layout)
+            rowLayout = view.findViewById(R.id.row_layout)
         }
     }
 
@@ -79,7 +81,7 @@ class PaintListAdapter(private val textData: PrintResText):RecyclerView.Adapter<
     }
 
     override fun getItemCount(): Int {
-       return paintList.size
+        return paintList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")

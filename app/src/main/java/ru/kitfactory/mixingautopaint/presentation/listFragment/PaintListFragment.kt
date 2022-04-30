@@ -35,9 +35,11 @@ class PaintListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.paint_mix_recycler_view) as RecyclerView
         @SuppressLint("UseCompatLoadingForDrawables")
         trashBinIcon = activity?.resources?.getDrawable(
-            drawable.ic_baseline_delete_forever, null) as Drawable
+            drawable.ic_baseline_delete_forever, null
+        ) as Drawable
         return view
     }
+
     override fun onStart() {
         super.onStart()
         // вызываем фрагмент добавления краски
@@ -65,16 +67,17 @@ class PaintListFragment : Fragment() {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean = false
+
             // обработчик свайпа
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 // создаём диалог подтверждения
                 val builder = AlertDialog.Builder(requireContext())
                 // если подтверждено удаляем
-                builder.setPositiveButton(getText(R.string.confirm_delete)){_, _ ->
+                builder.setPositiveButton(getText(R.string.confirm_delete)) { _, _ ->
                     deletePaint(textData, viewHolder)
                 }
                 // если не подтверждено ничего не делаем
-                builder.setNegativeButton(getText(R.string.cancel_delete)){_, _ ->
+                builder.setNegativeButton(getText(R.string.cancel_delete)) { _, _ ->
                     loadListPaint(textData)
                 }
                 // устанавливаем заголовок и текст диалога
@@ -84,25 +87,30 @@ class PaintListFragment : Fragment() {
                 builder.create().show()
             }
 
-            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
-                                     viewHolder: RecyclerView.ViewHolder,
-                                     dX: Float, dY: Float, actionState: Int,
-                                     isCurrentlyActive: Boolean)
-            {
+            override fun onChildDraw(
+                c: Canvas, recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float, dY: Float, actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
                 val itemView = viewHolder.itemView
                 val itemHeight = itemView.bottom - itemView.top
-                val intrinsicWidth =  trashBinIcon.intrinsicWidth
+                val intrinsicWidth = trashBinIcon.intrinsicWidth
                 val intrinsicHeight = trashBinIcon.intrinsicHeight
                 val trashBinIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
                 val trashBinIconMargin = (itemHeight - intrinsicHeight) / 2
                 val trashBinIconLeft = itemView.left + trashBinIconMargin - intrinsicWidth
                 val trashBinIconRight = itemView.left + trashBinIconMargin
                 val trashBinIconBottom = trashBinIconTop + intrinsicHeight
-                trashBinIcon.bounds = Rect(trashBinIconLeft, trashBinIconTop,
-                    trashBinIconRight, trashBinIconBottom)
+                trashBinIcon.bounds = Rect(
+                    trashBinIconLeft, trashBinIconTop,
+                    trashBinIconRight, trashBinIconBottom
+                )
                 trashBinIcon.draw(c)
-                super.onChildDraw(c, recyclerView, viewHolder,
-                    dX, dY, actionState, isCurrentlyActive)
+                super.onChildDraw(
+                    c, recyclerView, viewHolder,
+                    dX, dY, actionState, isCurrentlyActive
+                )
             }
 
             override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
@@ -114,17 +122,17 @@ class PaintListFragment : Fragment() {
         // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
         myHelper.attachToRecyclerView(recyclerView)
-        
+
     }
 
-        @Deprecated("Deprecated in Java")
-        override fun onActivityCreated(savedInstanceState: Bundle?) {
-            super.onActivityCreated(savedInstanceState)
-            viewModel = ViewModelProvider(this)[PaintListViewModel::class.java]
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this)[PaintListViewModel::class.java]
 
-        }
+    }
 
-    fun loadListPaint(textData: PrintResText){
+    fun loadListPaint(textData: PrintResText) {
         val adapter = PaintListAdapter(textData)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -133,7 +141,7 @@ class PaintListFragment : Fragment() {
         })
     }
 
-    fun deletePaint(textData: PrintResText, viewHolder: RecyclerView.ViewHolder){
+    fun deletePaint(textData: PrintResText, viewHolder: RecyclerView.ViewHolder) {
         val adapter = PaintListAdapter(textData)
         viewModel.removePaint(viewHolder.adapterPosition)
         adapter.notifyItemRemoved(viewHolder.adapterPosition)

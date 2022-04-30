@@ -33,13 +33,12 @@ class MainActivity : AppCompatActivity(), Callbacks {
     }
 
 
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.fragment_container_view)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onShowNotification(printTitle: String, printMix: String ) {
+    override fun onShowNotification(printTitle: String, printMix: String) {
         // Создаём уведомление
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity(), Callbacks {
     }
 
     override fun onDeleteNotification() {
-       val notificationManager = NotificationManagerCompat.from(this)
+        val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.cancel(NOTIFICATION_ID)
     }
 

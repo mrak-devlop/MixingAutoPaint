@@ -11,7 +11,7 @@ interface DbDao {
 
     //получаем конкретную краску по id
     @Query("SELECT * FROM mix_paint_table WHERE id=(:id)")
-    fun getPaint(id: Int):LiveData<Paint?>
+    fun getPaint(id: Int): LiveData<Paint?>
 
     //обновляем бд
     @Update

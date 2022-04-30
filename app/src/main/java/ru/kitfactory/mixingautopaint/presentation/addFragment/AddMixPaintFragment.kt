@@ -30,18 +30,18 @@ class AddMixPaintFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_mix_paint_fragment, container, false)
-        inTitle=view.findViewById(R.id.inTitleInput) as TextInputEditText
-        inPaintPart=view.findViewById(R.id.inPaintPartInput) as TextInputEditText
-        inHardenerPart=view.findViewById(R.id.inHardenerPartInput) as TextInputEditText
-        inDiluentPart=view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
-        inMassPaint=view.findViewById(R.id.inMassPaintInput) as TextInputEditText
-        saveButton=view.findViewById(R.id.saveButton) as Button
+        inTitle = view.findViewById(R.id.inTitleInput) as TextInputEditText
+        inPaintPart = view.findViewById(R.id.inPaintPartInput) as TextInputEditText
+        inHardenerPart = view.findViewById(R.id.inHardenerPartInput) as TextInputEditText
+        inDiluentPart = view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
+        inMassPaint = view.findViewById(R.id.inMassPaintInput) as TextInputEditText
+        saveButton = view.findViewById(R.id.saveButton) as Button
 
         saveButton.setOnClickListener {
             // получаем данные из фрагмента
             val title = inTitle.text.toString()
             val paintPart = inPaintPart.text.toString().toInt()
-            val hardenerPart =  inHardenerPart.text.toString().toInt()
+            val hardenerPart = inHardenerPart.text.toString().toInt()
             val diluentPart = inDiluentPart.text.toString().toInt()
             val massPaint = inMassPaint.text.toString().toInt()
 
@@ -53,15 +53,18 @@ class AddMixPaintFragment : Fragment() {
         return view
     }
 
-    private fun insertDataToDatabase(title: String,
-                                     paintPart: Int,
-                                     hardenerPart: Int,
-                                     diluentPart: Int,
-                                     massPaint: Int ) {
-        if (InputCheckUseCase(title, paintPart, hardenerPart,diluentPart, massPaint).execute()){
+    private fun insertDataToDatabase(
+        title: String,
+        paintPart: Int,
+        hardenerPart: Int,
+        diluentPart: Int,
+        massPaint: Int
+    ) {
+        if (InputCheckUseCase(title, paintPart, hardenerPart, diluentPart, massPaint).execute()) {
             // расчитываем краску
             val mixPaint = CalcMixUseCase(paintPart, hardenerPart, diluentPart, massPaint).execute()
-            val paint = Paint(0,
+            val paint = Paint(
+                0,
                 title,
                 paintPart,
                 hardenerPart,
@@ -70,11 +73,11 @@ class AddMixPaintFragment : Fragment() {
                 mixPaint.massPaint,
                 mixPaint.massHardener,
                 mixPaint.paintPlusHardener,
-                mixPaint.massDiluent)
+                mixPaint.massDiluent
+            )
             viewModel.addPaint(paint)
             findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
-        }
-        else {
+        } else {
             Toast.makeText(requireContext(), R.string.error_msg, Toast.LENGTH_LONG).show()
         }
 

@@ -3,9 +3,10 @@ package ru.kitfactory.mixingautopaint.domain.usecase
 import ru.kitfactory.mixingautopaint.domain.models.CompleteMixData
 
 class CalcMixUseCase(
-    private val paintPart : Int, private val hardenerPart : Int,
-    private val diluentPart : Int, private val paintMass : Int) {
-    fun execute() : CompleteMixData {
+    private val paintPart: Int, private val hardenerPart: Int,
+    private val diluentPart: Int, private val paintMass: Int
+) {
+    fun execute(): CompleteMixData {
 
 
         //считаем массу одной части
@@ -26,9 +27,11 @@ class CalcMixUseCase(
         // краска плюс отвердитель
         val paintPlusHardener = massPaint + massHardener
 
-        return CompleteMixData(massPaint.toFloat(),
+        return CompleteMixData(
+            massPaint.toFloat(),
             massHardener.toFloat(), paintPlusHardener.toFloat(),
-            massDiluent.toFloat(), this.paintMass.toDouble().toFloat())
+            massDiluent.toFloat(), this.paintMass.toDouble().toFloat()
+        )
     }
 
 }
