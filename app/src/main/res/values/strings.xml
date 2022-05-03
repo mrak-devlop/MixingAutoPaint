@@ -6,6 +6,7 @@
     <string name="in_diluent">Number of parts of diluent</string>
     <string name="paint_mass">Weight of finished paint</string>
     <string name="bt_save">Calc and Save</string>
+    <string name="bt_save_after_edit">Save</string>
     <string name="error_msg">All fields are not filled, if the component is missing enter 0</string>
     <string name="in_title">Enter Title</string>
     <string name="gram_in_list">Gram</string>

@@ -25,4 +25,5 @@
     <string name="detail_edit">редактировать</string>
     <string name="detail_notification">показать в уведомлениях</string>
     <string name="detail_name_fragment">Детальный вид смеси краски</string>
+    <string name="bt_save_after_edit">Сохранить</string>
 </resources>
