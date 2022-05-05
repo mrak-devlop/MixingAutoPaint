@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.kitfactory.mixingautopaint.R
 
@@ -22,6 +24,7 @@ class DetailMixPaintFragment : Fragment() {
     private lateinit var partsText: TextView
     private lateinit var mixText: TextView
     private lateinit var checkBoxNotification: CheckBox
+    private lateinit var editButton: Button
     private var callbacks: Callbacks? = null
 
     override fun onAttach(context: Context) {
@@ -38,6 +41,13 @@ class DetailMixPaintFragment : Fragment() {
         partsText = view.findViewById(R.id.detail_parts_text)
         mixText = view.findViewById(R.id.detail_mix_text)
         checkBoxNotification = view.findViewById(R.id.show_notification)
+        editButton = view.findViewById(R.id.edit_button)
+
+        editButton.setOnClickListener {
+            val directions = DetailMixPaintFragmentDirections
+                .actionDetailMixPaintFragmentToEditFragment(args.currentPaint)
+            findNavController().navigate(directions)
+        }
 
         val titleMix = args.currentPaint.titleMix
         val paintMass = args.currentPaint.paintMass.toString()

@@ -35,7 +35,7 @@ class AddMixPaintFragment : Fragment() {
         inHardenerPart = view.findViewById(R.id.inHardenerPartInput) as TextInputEditText
         inDiluentPart = view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
         inMassPaint = view.findViewById(R.id.inMassPaintInput) as TextInputEditText
-        saveButton = view.findViewById(R.id.saveButton) as Button
+        saveButton = view.findViewById(R.id.saveEditButton) as Button
 
         saveButton.setOnClickListener {
             // получаем данные из фрагмента

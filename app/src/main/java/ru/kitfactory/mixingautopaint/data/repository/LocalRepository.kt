@@ -17,6 +17,10 @@ class LocalRepository(private val dbDao: DbDao) {
     suspend fun removePaint(id: Int) {
         dbDao.removePaint(getPaints.value!![id])
     }
+
+    suspend fun updatePaint(paint: Paint){
+        dbDao.updatePaint(paint)
+    }
 }
 
 
