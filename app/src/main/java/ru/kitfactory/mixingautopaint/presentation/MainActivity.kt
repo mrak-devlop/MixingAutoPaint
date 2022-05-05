@@ -1,5 +1,6 @@
 package ru.kitfactory.mixingautopaint.presentation
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -61,9 +62,11 @@ class MainActivity : AppCompatActivity(), Callbacks {
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.cancel(NOTIFICATION_ID)
     }
+
+    @SuppressLint("ObsoleteSdkInt")
     private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
+        // Создаём NotificationChannel, но только на API 26+, потому что
+        // класс NotificationChannel является новым и не входит в библиотеку поддержки
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.channel_name)
             val descriptionText = getString(R.string.channel_description)
@@ -71,7 +74,7 @@ class MainActivity : AppCompatActivity(), Callbacks {
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-            // Register the channel with the system
+            // Регистрируем канал в системе
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
