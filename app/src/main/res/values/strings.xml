@@ -25,5 +25,7 @@
     <string name="detail_edit">edit</string>
     <string name="detail_notification">show in notification</string>
     <string name="detail_name_fragment">Paint mix detail view</string>
+    <string name="channel_name" translatable="false">MixingAutoPaint</string>
+    <string name="channel_description" translatable="false">Show Mix Pain</string>
 
 </resources>
