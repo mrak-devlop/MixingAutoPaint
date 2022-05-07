@@ -56,7 +56,7 @@ class AddMixPaintFragment : Fragment() {
     }
 
     private fun insertDataToDatabase(forMix: PaintForMix) {
-        if (InputCheckUseCase(forMix).execute()) {
+
             // расчитываем краску
             val mixPaint = CalcMixUseCase(forMix).execute()
             val paint = Paint(
@@ -71,13 +71,9 @@ class AddMixPaintFragment : Fragment() {
                 mixPaint.paintPlusHardener,
                 mixPaint.massDiluent
             )
+        // записываем данныев бд
             viewModel.addPaint(paint)
             findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
-        } else {
-            Toast.makeText(requireContext(), R.string.error_msg,
-                Toast.LENGTH_LONG).show()
-        }
-
     }
 
 

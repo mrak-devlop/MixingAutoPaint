@@ -62,8 +62,7 @@ class EditFragment : Fragment() {
         id: Int,
         forMix: PaintForMix
     ) {
-        if (InputCheckUseCase(forMix).execute()) {
-            // расчитываем краску
+        //пересчидываем краску
             val mixPaint = CalcMixUseCase(forMix).execute()
             val paint = Paint(
                 id,
@@ -77,12 +76,9 @@ class EditFragment : Fragment() {
                 mixPaint.paintPlusHardener,
                 mixPaint.massDiluent
             )
+        // обновляем запись в бд
             viewModel.updatePaint(paint)
             findNavController().navigate(R.id.action_editFragment_to_paintListFragment)
-        } else {
-            Toast.makeText(requireContext(), R.string.error_msg, Toast.LENGTH_LONG).show()
-        }
-
     }
 
     @Deprecated("Deprecated in Java")
