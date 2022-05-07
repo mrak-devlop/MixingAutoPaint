@@ -14,6 +14,7 @@ import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.InputCheckUseCase
+import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
 
 class AddMixPaintFragment : Fragment() {
 
@@ -40,36 +41,31 @@ class AddMixPaintFragment : Fragment() {
         saveButton.setOnClickListener {
             // получаем данные из фрагмента
             val title = inTitle.text.toString()
-            val paintPart = inPaintPart.text.toString().toInt()
-            val hardenerPart = inHardenerPart.text.toString().toInt()
-            val diluentPart = inDiluentPart.text.toString().toInt()
-            val massPaint = inMassPaint.text.toString().toInt()
+            val paintPart = inPaintPart.text.toString()
+            val hardenerPart = inHardenerPart.text.toString()
+            val diluentPart = inDiluentPart.text.toString()
+            val massPaint = inMassPaint.text.toString()
+            val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
 
             //  сохраняем в данные
-            insertDataToDatabase(title, paintPart, hardenerPart, diluentPart, massPaint)
+            insertDataToDatabase(forMix)
 
 
         }
         return view
     }
 
-    private fun insertDataToDatabase(
-        title: String,
-        paintPart: Int,
-        hardenerPart: Int,
-        diluentPart: Int,
-        massPaint: Int
-    ) {
-        if (InputCheckUseCase(title, paintPart, hardenerPart, diluentPart, massPaint).execute()) {
+    private fun insertDataToDatabase(forMix: PaintForMix) {
+        if (InputCheckUseCase(forMix).execute()) {
             // расчитываем краску
-            val mixPaint = CalcMixUseCase(paintPart, hardenerPart, diluentPart, massPaint).execute()
+            val mixPaint = CalcMixUseCase(forMix).execute()
             val paint = Paint(
                 0,
-                title,
-                paintPart,
-                hardenerPart,
-                diluentPart,
-                massPaint,
+                forMix.title,
+                forMix.paintPart.toInt(),
+                forMix.hardenerPart.toInt(),
+                forMix.diluentPart.toInt(),
+                forMix.massPaint.toInt(),
                 mixPaint.massPaint,
                 mixPaint.massHardener,
                 mixPaint.paintPlusHardener,

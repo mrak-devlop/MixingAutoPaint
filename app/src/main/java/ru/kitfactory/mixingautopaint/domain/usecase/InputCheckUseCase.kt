@@ -1,19 +1,17 @@
 package ru.kitfactory.mixingautopaint.domain.usecase
 
+import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
+
 class InputCheckUseCase(
-    private val title: String,
-    private val paintPart: Int,
-    private val hardenerPart: Int,
-    private val diluentPart: Int,
-    private val massPaint: Int
+    private val checkInputs: PaintForMix,
 ) {
     private val none = 0
 
     fun execute(): Boolean {
-        return !(title.length == none &&
-                paintPart.toString().length == none &&
-                hardenerPart.toString().length == none &&
-                diluentPart.toString().length == none &&
-                massPaint.toString().length == none)
+        return !(checkInputs.title.length == none &&
+                checkInputs.paintPart.length == none &&
+                checkInputs.hardenerPart.length == none &&
+                checkInputs.diluentPart.length == none &&
+                checkInputs.massPaint.length == none)
     }
 }

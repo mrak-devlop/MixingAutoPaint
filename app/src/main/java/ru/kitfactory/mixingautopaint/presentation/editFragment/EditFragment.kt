@@ -15,6 +15,7 @@ import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.InputCheckUseCase
+import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
 
 class EditFragment : Fragment() {
     private val argsForEdit by navArgs<EditFragmentArgs>()
@@ -47,40 +48,30 @@ class EditFragment : Fragment() {
 
         saveEditButton.setOnClickListener {
             val title = editTitle.text.toString()
-            val paintPart = editPaintPart.text.toString().toInt()
-            val hardenerPart = editHardenerPart.text.toString().toInt()
-            val diluentPart = editDiluentPart.text.toString().toInt()
-            val massPaint = editMassPaint.text.toString().toInt()
-            updateDataToDatabase(
-                argsForEdit.currentPaintForEdit.id,
-                title,
-                paintPart,
-                hardenerPart,
-                diluentPart,
-                massPaint
-            )
+            val paintPart = editPaintPart.text.toString()
+            val hardenerPart = editHardenerPart.text.toString()
+            val diluentPart = editDiluentPart.text.toString()
+            val massPaint = editMassPaint.text.toString()
+            val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
+            updateDataToDatabase(argsForEdit.currentPaintForEdit.id, forMix)
         }
         return view
     }
 
     private fun updateDataToDatabase(
         id: Int,
-        title: String,
-        paintPart: Int,
-        hardenerPart: Int,
-        diluentPart: Int,
-        massPaint: Int
+        forMix: PaintForMix
     ) {
-        if (InputCheckUseCase(title, paintPart, hardenerPart, diluentPart, massPaint).execute()) {
+        if (InputCheckUseCase(forMix).execute()) {
             // расчитываем краску
-            val mixPaint = CalcMixUseCase(paintPart, hardenerPart, diluentPart, massPaint).execute()
+            val mixPaint = CalcMixUseCase(forMix).execute()
             val paint = Paint(
                 id,
-                title,
-                paintPart,
-                hardenerPart,
-                diluentPart,
-                massPaint,
+                forMix.title,
+                forMix.paintPart.toInt(),
+                forMix.hardenerPart.toInt(),
+                forMix.diluentPart.toInt(),
+                forMix.massPaint.toInt(),
                 mixPaint.massPaint,
                 mixPaint.massHardener,
                 mixPaint.paintPlusHardener,
@@ -94,10 +85,10 @@ class EditFragment : Fragment() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(EditViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

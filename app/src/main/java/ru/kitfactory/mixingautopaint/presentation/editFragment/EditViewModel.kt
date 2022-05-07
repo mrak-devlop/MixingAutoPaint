@@ -12,6 +12,7 @@ import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 class EditViewModel (application: Application) : AndroidViewModel(application) {
     // активация репозитория
     private var repository: LocalRepository
+
     init {
         val dbDao = LocalDatabase.getDatabase(application).dbDao()
         repository = LocalRepository(dbDao)
