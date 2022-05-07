@@ -32,13 +32,14 @@
                     <TextView
                         android:id="@+id/detail_title_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="17dp"
                         android:text="Tittle + mass"
+                        tools:ignore="HardcodedText"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/show_notification"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="false"
@@ -52,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Parts"
+                    tools:ignore="HardcodedText"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="18sp" />
@@ -62,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Mass for Parts"
+                    tools:ignore="HardcodedText"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="18sp" />
