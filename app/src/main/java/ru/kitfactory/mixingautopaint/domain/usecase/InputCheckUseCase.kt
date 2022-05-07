@@ -1,7 +1,5 @@
 package ru.kitfactory.mixingautopaint.domain.usecase
 
-const val none = ""
-
 class InputCheckUseCase(
     private val title: String,
     private val paintPart: Int,
@@ -9,12 +7,13 @@ class InputCheckUseCase(
     private val diluentPart: Int,
     private val massPaint: Int
 ) {
+    private val none = 0
 
     fun execute(): Boolean {
-        return !(title == none &&
-                paintPart.toString() == none &&
-                hardenerPart.toString() == none &&
-                diluentPart.toString() == none &&
-                massPaint.toString() == none)
+        return !(title.length == none &&
+                paintPart.toString().length == none &&
+                hardenerPart.toString().length == none &&
+                diluentPart.toString().length == none &&
+                massPaint.toString().length == none)
     }
 }
