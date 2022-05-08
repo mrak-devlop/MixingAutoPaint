@@ -7,49 +7,66 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
-import ru.kitfactory.mixingautopaint.domain.usecase.InputCheckUseCase
+import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
 import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
 
 class AddMixPaintFragment : Fragment() {
 
     private lateinit var viewModel: AddMixPaintViewModel
     private lateinit var saveButton: Button
-    private lateinit var inTitle: TextInputEditText
-    private lateinit var inPaintPart: TextInputEditText
-    private lateinit var inHardenerPart: TextInputEditText
-    private lateinit var inDiluentPart: TextInputEditText
-    private lateinit var inMassPaint: TextInputEditText
+    private lateinit var inTitle: TextInputLayout
+    private lateinit var inTitleInput: TextInputEditText
+    private lateinit var inPaintPart: TextInputLayout
+    private lateinit var inPaintPartInput: TextInputEditText
+    private lateinit var inHardenerPart: TextInputLayout
+    private lateinit var inHardenerPartInput: TextInputEditText
+    private lateinit var inDiluentPart: TextInputLayout
+    private lateinit var inDiluentPartInput: TextInputEditText
+    private lateinit var inMassPaint: TextInputLayout
+    private lateinit var inMassPaintInput: TextInputEditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_mix_paint_fragment, container, false)
-        inTitle = view.findViewById(R.id.inTitleInput) as TextInputEditText
-        inPaintPart = view.findViewById(R.id.inPaintPartInput) as TextInputEditText
-        inHardenerPart = view.findViewById(R.id.inHardenerPartInput) as TextInputEditText
-        inDiluentPart = view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
-        inMassPaint = view.findViewById(R.id.inMassPaintInput) as TextInputEditText
+        inTitle = view.findViewById(R.id.inTitle) as TextInputLayout
+        inTitleInput = view.findViewById(R.id.inTitleInput) as TextInputEditText
+        inPaintPart = view.findViewById(R.id.inPaintPart) as TextInputLayout
+        inPaintPartInput = view.findViewById(R.id.inPaintPartInput) as TextInputEditText
+        inHardenerPart = view.findViewById(R.id.inHardenerPart) as TextInputLayout
+        inHardenerPartInput = view.findViewById(R.id.inHardenerPartInput) as TextInputEditText
+        inDiluentPart = view.findViewById(R.id.inDiluentPart) as TextInputLayout
+        inDiluentPartInput = view.findViewById(R.id.inDiluentPartInput) as TextInputEditText
+        inMassPaint = view.findViewById(R.id.inMassPaint) as TextInputLayout
+        inMassPaintInput = view.findViewById(R.id.inMassPaintInput) as TextInputEditText
         saveButton = view.findViewById(R.id.saveEditButton) as Button
+        val fieldsIn = FieldForCheck(inTitle, inTitleInput, inPaintPart, inPaintPartInput,
+            inHardenerPart, inHardenerPartInput, inDiluentPart, inDiluentPartInput,
+            inMassPaint, inMassPaintInput)
+        val errorMsg: List<String> = listOf(getString(R.string.title_error_msg),
+            getString(R.string.error_msg))
 
         saveButton.setOnClickListener {
             // получаем данные из фрагмента
-            val title = inTitle.text.toString()
-            val paintPart = inPaintPart.text.toString()
-            val hardenerPart = inHardenerPart.text.toString()
-            val diluentPart = inDiluentPart.text.toString()
-            val massPaint = inMassPaint.text.toString()
-            val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
-
-            //  сохраняем в данные
-            insertDataToDatabase(forMix)
-
+            val title = inTitleInput.text.toString()
+            val paintPart = inPaintPartInput.text.toString()
+            val hardenerPart = inHardenerPartInput.text.toString()
+            val diluentPart = inDiluentPartInput.text.toString()
+            val massPaint = inMassPaintInput.text.toString()
+            /* валидация ввода */
+            if (ChekFieldsUseCase(fieldsIn, errorMsg).execute()) {
+                val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
+                /* сохраняем в данные */
+                insertDataToDatabase(forMix)
+            }
 
         }
         return view
@@ -75,7 +92,6 @@ class AddMixPaintFragment : Fragment() {
             viewModel.addPaint(paint)
             findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
     }
-
 
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {

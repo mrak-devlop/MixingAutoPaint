@@ -7,7 +7,7 @@
     <string name="paint_mass">Weight of finished paint</string>
     <string name="bt_save">Calc and Save</string>
     <string name="bt_save_after_edit">Save</string>
-    <string name="error_msg">All fields are not filled, if the component is missing enter 0</string>
+    <string name="error_msg">The field is empty, if the component is missing, enter 0</string>
     <string name="in_title">Enter Title</string>
     <string name="gram_in_list">Gram</string>
     <string name="parts_in_list">mixing ratio (paint, hardener, diluent)</string>
@@ -27,5 +27,6 @@
     <string name="detail_name_fragment">Paint mix detail view</string>
     <string name="channel_name" translatable="false">MixingAutoPaint</string>
     <string name="channel_description" translatable="false">Show Mix Pain</string>
+    <string name="title_error_msg">The fields is empty</string>
 
 </resources>

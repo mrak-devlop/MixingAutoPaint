@@ -19,6 +19,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_title"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -39,6 +40,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_paint"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/inTitle"
             app:layout_constraintTop_toTopOf="parent">
@@ -58,8 +60,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/in_hardener"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inTitle">
 
@@ -77,9 +80,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_diluent"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/inHardenerPart"
             app:layout_constraintTop_toBottomOf="@+id/inPaintPart">
@@ -99,10 +103,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-
             android:hint="@string/paint_mass"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inHardenerPart">
@@ -121,7 +125,6 @@
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
             android:text="@string/bt_save"
             app:icon="@drawable/outline_save_24"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -7,7 +7,7 @@
     <string name="in_diluent">Количество частей разбавителя</string>
     <string name="paint_mass">Масса готовой краски</string>
     <string name="bt_save">Расчитать и Сохранить</string>
-    <string name="error_msg">Не заполнены все поля, если компонент отсутствует введите 0</string>
+    <string name="error_msg">Не заполнено поле, если компонент отсутствует введите 0</string>
     <string name="in_title">Введите Название</string>
     <string name="gram_in_list">Грамм</string>
     <string name="parts_in_list">Соотношение частей для смешивания (краска, отвердитель, разбавитель)</string>
@@ -26,4 +26,5 @@
     <string name="detail_notification">показать в уведомлениях</string>
     <string name="detail_name_fragment">Детальный вид смеси краски</string>
     <string name="bt_save_after_edit">Сохранить</string>
+    <string name="title_error_msg">Не заполнено поле</string>
 </resources>
