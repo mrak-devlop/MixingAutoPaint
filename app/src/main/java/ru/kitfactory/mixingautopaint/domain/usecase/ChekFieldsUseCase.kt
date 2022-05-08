@@ -30,6 +30,7 @@ class ChekFieldsUseCase(private val field: FieldForCheck, private val errors:Lis
         }
         if (field.inMassPaintInput.length() == 0){
             field.inMassPaint.error = errors[1]
+            return false
         }else{
             field.inMassPaint.error = null
         }
