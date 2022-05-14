@@ -85,9 +85,9 @@ class EditFragment : Fragment() {
             val paint = Paint(
                 id,
                 forMix.title,
-                forMix.paintPart.toInt(),
-                forMix.hardenerPart.toInt(),
-                forMix.diluentPart.toInt(),
+                forMix.paintPart.toFloat(),
+                forMix.hardenerPart.toFloat(),
+                forMix.diluentPart.toFloat(),
                 forMix.massPaint.toInt(),
                 mixPaint.massPaint,
                 mixPaint.massHardener,

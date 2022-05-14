@@ -11,22 +11,20 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inTitle"
+            android:id="@+id/editTitle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
             android:hint="@string/in_title"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inTitleInput"
-                android:layout_width="match_parent"
+                android:id="@+id/editTitleInput"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 tools:ignore="TextContrastCheck" />
@@ -34,21 +32,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inPaintPart"
+            android:id="@+id/editPaintPart"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_paint"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inTitle">
+            app:layout_constraintStart_toEndOf="@+id/editTitle"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inPaintPartInput"
-                android:layout_width="match_parent"
+                android:id="@+id/editPaintPartInput"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
@@ -56,21 +54,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inHardenerPart"
+            android:id="@+id/editHardenerPart"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
             android:hint="@string/in_hardener"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inPaintPart">
+            app:layout_constraintTop_toBottomOf="@+id/editTitle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inHardenerPartInput"
-                android:layout_width="match_parent"
+                android:id="@+id/editHardenerPartInput"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
@@ -78,21 +74,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inDiluentPart"
+            android:id="@+id/editDiluentPart"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_diluent"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inHardenerPart">
+            app:layout_constraintStart_toEndOf="@+id/editHardenerPart"
+            app:layout_constraintTop_toBottomOf="@+id/editPaintPart">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inDiluentPartInput"
-                android:layout_width="match_parent"
+                android:id="@+id/editDiluentPartInput"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
@@ -100,21 +95,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inMassPaint"
+            android:id="@+id/editMassPaint"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:hint="@string/paint_mass"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inDiluentPart">
+            app:layout_constraintTop_toBottomOf="@id/editHardenerPart">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inMassPaintInput"
-                android:layout_width="match_parent"
+                android:id="@+id/editMassPaintInput"
+                android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 tools:ignore="TextContrastCheck" />
@@ -131,7 +126,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inMassPaint" />
+            app:layout_constraintTop_toBottomOf="@+id/editMassPaint" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

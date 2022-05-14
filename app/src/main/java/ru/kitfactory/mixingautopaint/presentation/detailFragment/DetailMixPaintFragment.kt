@@ -22,6 +22,7 @@ class DetailMixPaintFragment : Fragment() {
     private val args by navArgs<DetailMixPaintFragmentArgs>()
     private lateinit var titleText: TextView
     private lateinit var partsText: TextView
+    private lateinit var parts: TextView
     private lateinit var mixText: TextView
     private lateinit var checkBoxNotification: CheckBox
     private lateinit var editButton: Button
@@ -39,6 +40,7 @@ class DetailMixPaintFragment : Fragment() {
         val view = inflater.inflate(R.layout.detail_mix_paint_fragment, container, false)
         titleText = view.findViewById(R.id.detail_title_text)
         partsText = view.findViewById(R.id.detail_parts_text)
+        parts = view.findViewById(R.id.detail_parts)
         mixText = view.findViewById(R.id.detail_mix_text)
         checkBoxNotification = view.findViewById(R.id.show_notification)
         editButton = view.findViewById(R.id.edit_button)
@@ -59,9 +61,9 @@ class DetailMixPaintFragment : Fragment() {
         val partPaint = args.currentPaint.partPaint.toString()
         val partHardener = args.currentPaint.partHardener.toString()
         val partDiluent = args.currentPaint.partDiluent.toString()
-        val printParts = (partsTitle + SPACE + partPaint +
-                COLON + partHardener + COLON + partDiluent)
-        partsText.text = printParts
+        partsText.text = partsTitle
+        val printParts = (partPaint + COLON + partHardener + COLON + partDiluent)
+        parts.text = printParts
 
         val text1Mix = getString(R.string.mix1_list)
         val text2Mix = getString(R.string.mix2_list)

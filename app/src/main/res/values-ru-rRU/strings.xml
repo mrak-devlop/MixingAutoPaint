@@ -12,7 +12,7 @@
     <string name="gram_in_list">Грамм</string>
     <string name="parts_in_list">Соотношение частей для смешивания (краска, отвердитель, разбавитель)</string>
     <string name="mix1_list">"В тару налить "</string>
-    <string name="mix2_list">"г краски долить "</string>
+    <string name="mix2_list">"г краски, долить "</string>
     <string name="mix3_list">"г отвердителя = "</string>
     <string name="mix4_list">"г и долить "</string>
     <string name="mix5_list">г разбавителя</string>
@@ -27,4 +27,5 @@
     <string name="detail_name_fragment">Детальный вид смеси краски</string>
     <string name="bt_save_after_edit">Сохранить</string>
     <string name="title_error_msg">Не заполнено поле</string>
+    <string name="edit_paint">Редактировать краску</string>
 </resources>

@@ -6,9 +6,9 @@ import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
 class CalcMixUseCase(private val inputForMix: PaintForMix) {
     fun execute(): CompleteMixData {
         val inPaintMass = inputForMix.massPaint.toInt()
-        val paintPart = inputForMix.paintPart.toInt()
-        val hardenerPart = inputForMix.hardenerPart.toInt()
-        val diluentPart = inputForMix.diluentPart.toInt()
+        val paintPart = inputForMix.paintPart.toFloat()
+        val hardenerPart = inputForMix.hardenerPart.toFloat()
+        val diluentPart = inputForMix.diluentPart.toFloat()
 
         //считаем массу одной части
         val onePartMass =

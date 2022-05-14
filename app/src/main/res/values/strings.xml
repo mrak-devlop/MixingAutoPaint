@@ -28,5 +28,6 @@
     <string name="channel_name" translatable="false">MixingAutoPaint</string>
     <string name="channel_description" translatable="false">Show Mix Pain</string>
     <string name="title_error_msg">The fields is empty</string>
+    <string name="edit_paint">Edit paint</string>
 
 </resources>

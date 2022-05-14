@@ -16,8 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/in_title"
             app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +36,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_paint"
             app:errorEnabled="true"
@@ -49,7 +48,7 @@
                 android:id="@+id/inPaintPartInput"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +59,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
             android:hint="@string/in_hardener"
             app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +68,7 @@
                 android:id="@+id/inHardenerPartInput"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +78,6 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/in_diluent"
             app:errorEnabled="true"
@@ -92,7 +89,7 @@
                 android:id="@+id/inDiluentPartInput"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -102,9 +99,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:hint="@string/paint_mass"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +111,7 @@
                 android:id="@+id/inMassPaintInput"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:inputType="number"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>

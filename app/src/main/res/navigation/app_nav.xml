@@ -48,7 +48,7 @@
     <fragment
         android:id="@+id/editFragment"
         android:name="ru.kitfactory.mixingautopaint.presentation.editFragment.EditFragment"
-        android:label="edit_fragment"
+        android:label="@string/edit_paint"
         tools:layout="@layout/edit_fragment" >
         <action
             android:id="@+id/action_editFragment_to_paintListFragment"
