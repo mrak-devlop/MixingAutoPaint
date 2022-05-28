@@ -19,7 +19,7 @@ import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
 
 class AddMixPaintFragment : Fragment() {
 
-    private lateinit var viewModel: AddMixPaintViewModel
+
     private lateinit var saveButton: Button
     private lateinit var inTitle: TextInputLayout
     private lateinit var inTitleInput: TextInputEditText
@@ -31,6 +31,9 @@ class AddMixPaintFragment : Fragment() {
     private lateinit var inDiluentPartInput: TextInputEditText
     private lateinit var inMassPaint: TextInputLayout
     private lateinit var inMassPaintInput: TextInputEditText
+    private val viewModel: AddMixPaintViewModel by lazy {
+        ViewModelProvider(this)[AddMixPaintViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +51,15 @@ class AddMixPaintFragment : Fragment() {
         inMassPaint = view.findViewById(R.id.inMassPaint) as TextInputLayout
         inMassPaintInput = view.findViewById(R.id.inMassPaintInput) as TextInputEditText
         saveButton = view.findViewById(R.id.saveEditButton) as Button
-        val fieldsIn = FieldForCheck(inTitle, inTitleInput, inPaintPart, inPaintPartInput,
+        val fieldsIn = FieldForCheck(
+            inTitle, inTitleInput, inPaintPart, inPaintPartInput,
             inHardenerPart, inHardenerPartInput, inDiluentPart, inDiluentPartInput,
-            inMassPaint, inMassPaintInput)
-        val errorMsg: List<String> = listOf(getString(R.string.title_error_msg),
-            getString(R.string.error_msg))
+            inMassPaint, inMassPaintInput
+        )
+        val errorMsg: List<String> = listOf(
+            getString(R.string.title_error_msg),
+            getString(R.string.error_msg)
+        )
 
         saveButton.setOnClickListener {
             // получаем данные из фрагмента
@@ -74,29 +81,23 @@ class AddMixPaintFragment : Fragment() {
 
     private fun insertDataToDatabase(forMix: PaintForMix) {
 
-            // расчитываем краску
-            val mixPaint = CalcMixUseCase(forMix).execute()
-            val paint = Paint(
-                0,
-                forMix.title,
-                forMix.paintPart.toFloat(),
-                forMix.hardenerPart.toFloat(),
-                forMix.diluentPart.toFloat(),
-                forMix.massPaint.toInt(),
-                mixPaint.massPaint,
-                mixPaint.massHardener,
-                mixPaint.paintPlusHardener,
-                mixPaint.massDiluent
-            )
+        // расчитываем краску
+        val mixPaint = CalcMixUseCase(forMix).execute()
+        val paint = Paint(
+            0,
+            forMix.title,
+            forMix.paintPart.toFloat(),
+            forMix.hardenerPart.toFloat(),
+            forMix.diluentPart.toFloat(),
+            forMix.massPaint.toInt(),
+            mixPaint.massPaint,
+            mixPaint.massHardener,
+            mixPaint.paintPlusHardener,
+            mixPaint.massDiluent
+        )
         // записываем данныев бд
-            viewModel.addPaint(paint)
-            findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AddMixPaintViewModel::class.java)
+        viewModel.addPaint(paint)
+        findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
     }
 
 
