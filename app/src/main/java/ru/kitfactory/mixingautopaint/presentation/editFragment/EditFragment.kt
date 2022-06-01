@@ -74,7 +74,8 @@ class EditFragment : Fragment() {
             val hardenerPart = editHardenerPartInput.text.toString()
             val diluentPart = editDiluentPartInput.text.toString()
             val massPaint = editMassPaintInput.text.toString()
-            if (ChekFieldsUseCase(fieldsIn, errorMsg).execute()) {
+            val chekFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
+            if (chekFieldsUseCase.execute()) {
                 val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
                 updateDataToDatabase(argsForEdit.currentPaintForEdit.id, forMix)
             }

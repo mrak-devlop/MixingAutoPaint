@@ -69,7 +69,8 @@ class AddMixPaintFragment : Fragment() {
             val diluentPart = inDiluentPartInput.text.toString()
             val massPaint = inMassPaintInput.text.toString()
             /* валидация ввода */
-            if (ChekFieldsUseCase(fieldsIn, errorMsg).execute()) {
+            val chekFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
+            if (chekFieldsUseCase.execute()) {
                 val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
                 /* сохраняем в данные */
                 insertDataToDatabase(forMix)

@@ -1,7 +1,9 @@
 package ru.kitfactory.mixingautopaint.di
 
 import dagger.Component
+import ru.kitfactory.mixingautopaint.MainActivity
 
-@Component
+@Component(modules = [DataModule::class])
 interface AppComponent {
+    fun inject(mainActivity: MainActivity)
 }

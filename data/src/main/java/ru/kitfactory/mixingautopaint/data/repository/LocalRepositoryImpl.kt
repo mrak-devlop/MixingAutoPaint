@@ -3,22 +3,24 @@ package ru.kitfactory.mixingautopaint.data.repository
 import androidx.lifecycle.LiveData
 import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.domain.repository.LocalRepository
 
-class LocalRepository(private val dbDao: DbDao) {
+class LocalRepositoryImpl(private val dbDao: DbDao): LocalRepository {
     //получаем полный список красок
-    val getPaints: LiveData<List<Paint>> = dbDao.getPaints()
+
+    override val getPaints: LiveData<List<Paint>> = dbDao.getPaints()
 
     //добавление новой краски
-    suspend fun addNewPaint(paint: Paint) {
+    override suspend fun addNewPaint(paint: Paint) {
         dbDao.addPaint(paint)
     }
 
     //получаем краску по индефикатору и удаляем её
-    suspend fun removePaint(id: Int) {
+    override suspend fun removePaint(id: Int) {
         dbDao.removePaint(getPaints.value!![id])
     }
 
-    suspend fun updatePaint(paint: Paint){
+    override suspend fun updatePaint(paint: Paint){
         dbDao.updatePaint(paint)
     }
 }
