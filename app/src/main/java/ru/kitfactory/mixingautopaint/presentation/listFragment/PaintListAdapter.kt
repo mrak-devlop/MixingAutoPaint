@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.kitfactory.mixingautopaint.R
-import ru.kitfactory.mixingautopaint.data.storage.db.PaintImpl
+import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 
 const val SPACE = " "
@@ -18,7 +18,7 @@ const val COLON = ":"
 
 class PaintListAdapter(private val textData: PrintResText) :
     RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
-    private var paintList = emptyList<PaintImpl>()
+    private var paintList = emptyList<Paint>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleText: TextView
@@ -85,7 +85,7 @@ class PaintListAdapter(private val textData: PrintResText) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(paint: List<PaintImpl>) {
+    fun setData(paint: List<Paint>) {
         this.paintList = paint
         notifyDataSetChanged()
     }

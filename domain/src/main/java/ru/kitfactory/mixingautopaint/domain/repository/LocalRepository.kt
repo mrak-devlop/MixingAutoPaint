@@ -2,7 +2,6 @@ package ru.kitfactory.mixingautopaint.domain.repository
 
 
 import androidx.lifecycle.LiveData
-import ru.kitfactory.mixingautopaint.domain.models.Paint
 
 
 interface LocalRepository {

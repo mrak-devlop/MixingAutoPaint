@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [PaintImpl::class], version = 1, exportSchema = false)
+@Database(entities = [Paint::class], version = 1, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun dbDao(): DbDao
 

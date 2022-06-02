@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import ru.kitfactory.mixingautopaint.data.repository.LocalRepositoryImpl
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
-import ru.kitfactory.mixingautopaint.data.storage.db.PaintImpl
+import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.usecase.AddPaintUseCase
 
 class AddMixPaintViewModel(application: Application) : AndroidViewModel(application) {
@@ -18,7 +18,7 @@ class AddMixPaintViewModel(application: Application) : AndroidViewModel(applicat
 
     // добавляем данные в корутине
     private val addPaintUseCase = AddPaintUseCase(repository, AddMixPaintViewModel(application))
-    fun addPaint(paint: PaintImpl) {
+    fun addPaint(paint: Paint) {
        addPaintUseCase.execute(paint)
     }
 
