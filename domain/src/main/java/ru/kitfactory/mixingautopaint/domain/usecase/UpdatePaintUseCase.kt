@@ -4,6 +4,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.kitfactory.mixingautopaint.domain.models.Paint
 import ru.kitfactory.mixingautopaint.domain.repository.LocalRepository
 
 class UpdatePaintUseCase(

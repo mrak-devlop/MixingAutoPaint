@@ -11,11 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import ru.kitfactory.mixingautopaint.R
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.data.storage.db.PaintImpl
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
-import ru.kitfactory.mixingautopaint.domain.models.PaintForMix
 
 class AddMixPaintFragment : Fragment() {
 
@@ -90,7 +89,7 @@ class AddMixPaintFragment : Fragment() {
 
         // расчитываем краску
         val mixPaint = CalcMixUseCase(forMix).execute()
-        val paint = Paint(
+        val paint = PaintImpl(
             0,
             forMix.title,
             forMix.paintPart.toFloat(),

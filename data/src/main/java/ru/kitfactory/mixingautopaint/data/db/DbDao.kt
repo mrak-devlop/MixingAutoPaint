@@ -7,21 +7,21 @@ import androidx.room.*
 interface DbDao {
     //получаем полный список из бд
     @Query("SELECT * FROM mix_paint_table ORDER BY id ASC")
-    fun getPaints(): LiveData<List<Paint>>
+    fun getPaints(): LiveData<List<PaintImpl>>
 
     //получаем конкретную краску по id
     @Query("SELECT * FROM mix_paint_table WHERE id=(:id)")
-    fun getPaint(id: Int): LiveData<Paint?>
+    fun getPaint(id: Int): LiveData<PaintImpl?>
 
     //обновляем бд
     @Update
-    suspend fun updatePaint(paint: Paint)
+    suspend fun updatePaint(paint: PaintImpl)
 
     //добавляем в бд новый микс краски
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addPaint(paint: Paint)
+    suspend fun addPaint(paint: PaintImpl)
 
     @Delete
-    suspend fun removePaint(paint: Paint)
+    suspend fun removePaint(paint: PaintImpl)
 
 }

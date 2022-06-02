@@ -2,12 +2,9 @@ package ru.kitfactory.mixingautopaint.presentation.addFragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import ru.kitfactory.mixingautopaint.data.repository.LocalRepositoryImpl
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.data.storage.db.PaintImpl
 import ru.kitfactory.mixingautopaint.domain.usecase.AddPaintUseCase
 
 class AddMixPaintViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,7 +18,7 @@ class AddMixPaintViewModel(application: Application) : AndroidViewModel(applicat
 
     // добавляем данные в корутине
     private val addPaintUseCase = AddPaintUseCase(repository, AddMixPaintViewModel(application))
-    fun addPaint(paint: Paint) {
+    fun addPaint(paint: PaintImpl) {
        addPaintUseCase.execute(paint)
     }
 
