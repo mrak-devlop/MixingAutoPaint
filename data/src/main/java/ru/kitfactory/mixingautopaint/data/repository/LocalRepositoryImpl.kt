@@ -5,10 +5,11 @@ import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.repository.LocalRepository
 
-class LocalRepositoryImpl(private val dbDao: DbDao): LocalRepository {
+class LocalRepositoryImpl(private val dbDao: DbDao): LocalRepository{
     //получаем полный список красок
 
     override val getPaints: LiveData<List<Paint>> = dbDao.getPaints()
+
 
     //добавление новой краски
     override suspend fun addNewPaint(paint: Paint) {
@@ -24,5 +25,6 @@ class LocalRepositoryImpl(private val dbDao: DbDao): LocalRepository {
         dbDao.updatePaint(paint)
     }
 }
+
 
 

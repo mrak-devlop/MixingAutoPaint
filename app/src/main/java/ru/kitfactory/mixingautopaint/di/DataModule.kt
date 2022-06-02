@@ -4,6 +4,7 @@ package ru.kitfactory.mixingautopaint.di
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import ru.kitfactory.mixingautopaint.domain.repository.LocalRepository
 import ru.kitfactory.mixingautopaint.data.repository.LocalRepositoryImpl
 import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
@@ -16,7 +17,7 @@ class DataModule {
     }
 
     @Provides
-    fun provideRepository(dbDao: DbDao): LocalRepositoryImpl {
+    fun provideRepository(dbDao: DbDao): LocalRepository {
         return LocalRepositoryImpl(dbDao)
     }
 

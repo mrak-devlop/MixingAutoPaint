@@ -1,4 +1,4 @@
-package ru.kitfactory.mixingautopaint.presentation.model
+package ru.kitfactory.mixingautopaint.domain.models
 
 data class PaintForMix (
     val title: String,

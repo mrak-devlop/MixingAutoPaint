@@ -15,7 +15,7 @@ import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
-import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
+import ru.kitfactory.mixingautopaint.domain.models.PaintForMix
 
 class AddMixPaintFragment : Fragment() {
 
@@ -71,7 +71,13 @@ class AddMixPaintFragment : Fragment() {
             /* валидация ввода */
             val chekFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
             if (chekFieldsUseCase.execute()) {
-                val forMix = PaintForMix(title, paintPart, hardenerPart, diluentPart, massPaint)
+                val forMix = ru.kitfactory.mixingautopaint.domain.models.PaintForMix(
+                    title,
+                    paintPart,
+                    hardenerPart,
+                    diluentPart,
+                    massPaint
+                )
                 /* сохраняем в данные */
                 insertDataToDatabase(forMix)
             }
@@ -80,7 +86,7 @@ class AddMixPaintFragment : Fragment() {
         return view
     }
 
-    private fun insertDataToDatabase(forMix: PaintForMix) {
+    private fun insertDataToDatabase(forMix: ru.kitfactory.mixingautopaint.domain.models.PaintForMix) {
 
         // расчитываем краску
         val mixPaint = CalcMixUseCase(forMix).execute()

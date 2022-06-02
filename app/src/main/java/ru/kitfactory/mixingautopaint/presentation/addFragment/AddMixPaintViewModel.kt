@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import ru.kitfactory.mixingautopaint.data.repository.LocalRepositoryImpl
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.domain.usecase.AddPaintUseCase
 
 class AddMixPaintViewModel(application: Application) : AndroidViewModel(application) {
     // активация репозитория
@@ -19,10 +20,9 @@ class AddMixPaintViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     // добавляем данные в корутине
+    private val addPaintUseCase = AddPaintUseCase(repository, AddMixPaintViewModel(application))
     fun addPaint(paint: Paint) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addNewPaint(paint)
-        }
+       addPaintUseCase.execute(paint)
     }
 
 }

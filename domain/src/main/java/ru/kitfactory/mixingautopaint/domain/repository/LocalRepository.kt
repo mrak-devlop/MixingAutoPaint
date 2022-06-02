@@ -1,8 +1,8 @@
 package ru.kitfactory.mixingautopaint.domain.repository
 
+
 import androidx.lifecycle.LiveData
-import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+
 
 interface LocalRepository {
     val getPaints: LiveData<List<Paint>>

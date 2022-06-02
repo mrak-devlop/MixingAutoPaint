@@ -3,6 +3,7 @@ package ru.kitfactory.mixingautopaint.domain.models
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
+
 data class FieldForCheck(
     val inTitle: TextInputLayout,
     val inTitleInput: TextInputEditText,
