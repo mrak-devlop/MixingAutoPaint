@@ -15,7 +15,7 @@ interface DbDao {
 
     //обновляем бд
     @Update
-    suspend fun updatePaint(paint: Paint)
+    fun updatePaint(paint: Paint)
 
     //добавляем в бд новый микс краски
     @Insert(onConflict = OnConflictStrategy.IGNORE)

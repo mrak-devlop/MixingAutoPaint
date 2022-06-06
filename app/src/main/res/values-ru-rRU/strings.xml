@@ -28,5 +28,4 @@
     <string name="bt_save_after_edit">Сохранить</string>
     <string name="title_error_msg">Не заполнено поле</string>
     <string name="edit_paint">Редактировать краску</string>
-    <string name="swipe_to_del">Свайп вправо для удаления</string>
 </resources>

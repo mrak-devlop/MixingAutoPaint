@@ -23,10 +23,8 @@ import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 class PaintListFragment : Fragment() {
     private lateinit var addButton: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
+    private lateinit var viewModel: PaintListViewModel
     private lateinit var trashBinIcon: Drawable
-    private val viewModel: PaintListViewModel by lazy {
-        ViewModelProvider(this)[PaintListViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,6 +122,13 @@ class PaintListFragment : Fragment() {
         // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
         myHelper.attachToRecyclerView(recyclerView)
+
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this)[PaintListViewModel::class.java]
 
     }
 

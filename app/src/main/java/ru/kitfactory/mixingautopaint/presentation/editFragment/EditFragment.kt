@@ -19,6 +19,7 @@ import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
 
 class EditFragment : Fragment() {
     private val argsForEdit by navArgs<EditFragmentArgs>()
+    private lateinit var viewModel: EditViewModel
     private lateinit var saveEditButton: Button
     private lateinit var editTitle: TextInputLayout
     private lateinit var editTitleInput: TextInputEditText
@@ -30,9 +31,6 @@ class EditFragment : Fragment() {
     private lateinit var editDiluentPartInput: TextInputEditText
     private lateinit var editMassPaint: TextInputLayout
     private lateinit var editMassPaintInput: TextInputEditText
-    private val viewModel: EditViewModel by lazy {
-        ViewModelProvider(this)[EditViewModel::class.java]
-    }
 
 
     override fun onCreateView(
@@ -57,15 +55,11 @@ class EditFragment : Fragment() {
         editHardenerPartInput.setText(argsForEdit.currentPaintForEdit.partHardener.toString())
         editDiluentPartInput.setText(argsForEdit.currentPaintForEdit.partDiluent.toString())
         editMassPaintInput.setText(argsForEdit.currentPaintForEdit.paintMass.toString())
-        val fieldsIn = FieldForCheck(
-            editTitle, editTitleInput, editPaintPart, editPaintPartInput,
-            editHardenerPart, editHardenerPartInput, editDiluentPart, editDiluentPartInput,
-            editMassPaint, editMassPaintInput
-        )
-        val errorMsg: List<String> = listOf(
-            getString(R.string.title_error_msg),
-            getString(R.string.error_msg)
-        )
+        val fieldsIn = FieldForCheck(editTitle, editTitleInput, editPaintPart, editPaintPartInput,
+        editHardenerPart, editHardenerPartInput, editDiluentPart, editDiluentPartInput,
+            editMassPaint, editMassPaintInput)
+        val errorMsg: List<String> = listOf(getString(R.string.title_error_msg),
+            getString(R.string.error_msg))
 
         saveEditButton.setOnClickListener {
             val title = editTitleInput.text.toString()
@@ -93,22 +87,28 @@ class EditFragment : Fragment() {
         forMix: ru.kitfactory.mixingautopaint.domain.models.PaintForMix
     ) {
         //пересчидываем краску
-        val mixPaint = CalcMixUseCase(forMix).execute()
-        val paint = Paint(
-            id,
-            forMix.title,
-            forMix.paintPart.toFloat(),
-            forMix.hardenerPart.toFloat(),
-            forMix.diluentPart.toFloat(),
-            forMix.massPaint.toInt(),
-            mixPaint.massPaint,
-            mixPaint.massHardener,
-            mixPaint.paintPlusHardener,
-            mixPaint.massDiluent
-        )
+            val mixPaint = CalcMixUseCase(forMix).execute()
+            val paint = Paint(
+                id,
+                forMix.title,
+                forMix.paintPart.toFloat(),
+                forMix.hardenerPart.toFloat(),
+                forMix.diluentPart.toFloat(),
+                forMix.massPaint.toInt(),
+                mixPaint.massPaint,
+                mixPaint.massHardener,
+                mixPaint.paintPlusHardener,
+                mixPaint.massDiluent
+            )
         // обновляем запись в бд
-        viewModel.updatePaint(paint)
-        findNavController().navigate(R.id.action_editFragment_to_paintListFragment)
+            viewModel.updatePaint(paint)
+            findNavController().navigate(R.id.action_editFragment_to_paintListFragment)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(EditViewModel::class.java)
     }
 
 }
