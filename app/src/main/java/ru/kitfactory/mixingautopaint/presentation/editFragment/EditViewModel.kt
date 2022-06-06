@@ -2,21 +2,24 @@ package ru.kitfactory.mixingautopaint.presentation.editFragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import ru.kitfactory.mixingautopaint.data.repository.LocalRepository
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
-import ru.kitfactory.mixingautopaint.data.repository.LocalRepositoryImpl
 import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
-import ru.kitfactory.mixingautopaint.domain.usecase.UpdatePaintUseCase
 
 class EditViewModel (application: Application) : AndroidViewModel(application) {
     // активация репозитория
-    private var repository: LocalRepositoryImpl
+    private var repository: LocalRepository
 
     init {
         val dbDao = LocalDatabase.getDatabase(application).dbDao()
-        repository = LocalRepositoryImpl(dbDao)
+        repository = LocalRepository(dbDao)
     }
-    private val updatePaintUseCase = UpdatePaintUseCase(repository, EditViewModel(application))
     fun updatePaint(paint: Paint){
-        updatePaintUseCase.execute(paint)
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updatePaint(paint)
+        }
     }
 }

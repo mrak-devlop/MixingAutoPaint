@@ -3,7 +3,7 @@ package ru.kitfactory.mixingautopaint.domain.usecase
 import ru.kitfactory.mixingautopaint.domain.models.CompleteMixData
 import ru.kitfactory.mixingautopaint.domain.models.PaintForMix
 
-class CalcMixUseCase(private val inputForMix: PaintForMix) {
+class CalcMixUseCase(private val inputForMix: ru.kitfactory.mixingautopaint.domain.models.PaintForMix) {
     fun execute(): CompleteMixData {
         val inPaintMass = inputForMix.massPaint.toInt()
         val paintPart = inputForMix.paintPart.toFloat()

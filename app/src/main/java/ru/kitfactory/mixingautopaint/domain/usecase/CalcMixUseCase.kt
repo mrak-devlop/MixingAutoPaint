@@ -1,7 +1,8 @@
 package ru.kitfactory.mixingautopaint.domain.usecase
 
 import ru.kitfactory.mixingautopaint.domain.models.CompleteMixData
-import ru.kitfactory.mixingautopaint.presentation.model.PaintForMix
+import ru.kitfactory.mixingautopaint.domain.models.PaintForMix
+
 
 class CalcMixUseCase(private val inputForMix: PaintForMix) {
     fun execute(): CompleteMixData {
