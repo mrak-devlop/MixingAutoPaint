@@ -19,7 +19,9 @@ import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
 
 class EditFragment : Fragment() {
     private val argsForEdit by navArgs<EditFragmentArgs>()
-    private lateinit var viewModel: EditViewModel
+    private val viewModel: EditViewModel by lazy {
+        ViewModelProvider(this)[EditViewModel::class.java]
+    }
     private lateinit var saveEditButton: Button
     private lateinit var editTitle: TextInputLayout
     private lateinit var editTitleInput: TextInputEditText
@@ -105,10 +107,5 @@ class EditFragment : Fragment() {
             findNavController().navigate(R.id.action_editFragment_to_paintListFragment)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EditViewModel::class.java)
-    }
 
 }
