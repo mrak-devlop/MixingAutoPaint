@@ -1,2 +1,3 @@
 # MixingAutoPaint
-Just small app for calculatin mix auto paint
+Just small app for calculation mix auto paint.
+Use Room and Coroutines
