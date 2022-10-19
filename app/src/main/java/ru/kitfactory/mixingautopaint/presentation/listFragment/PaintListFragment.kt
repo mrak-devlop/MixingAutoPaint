@@ -15,16 +15,22 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import ru.kitfactory.mixingautopaint.App
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.R.drawable
+import ru.kitfactory.mixingautopaint.di.factory.ViewModelFactory
 import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
+import ru.kitfactory.mixingautopaint.viewmodel.PaintListViewModel
+import javax.inject.Inject
 
 
 class PaintListFragment : Fragment() {
     private lateinit var addButton: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
     private val viewModel: PaintListViewModel by lazy {
-        ViewModelProvider(this)[PaintListViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[PaintListViewModel::class.java]
     }
     private lateinit var trashBinIcon: Drawable
 
@@ -40,6 +46,15 @@ class PaintListFragment : Fragment() {
             drawable.ic_baseline_delete_forever, null
         ) as Drawable
         return view
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        injectDagger()
+    }
+
+    private fun injectDagger() {
+        App.instance.appComponent.inject(this)
     }
 
     override fun onStart() {

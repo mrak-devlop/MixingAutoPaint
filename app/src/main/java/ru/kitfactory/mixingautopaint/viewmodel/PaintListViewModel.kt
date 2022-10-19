@@ -1,8 +1,7 @@
-package ru.kitfactory.mixingautopaint.presentation.listFragment
+package ru.kitfactory.mixingautopaint.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -11,15 +10,8 @@ import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
 
 
-class PaintListViewModel(application: Application) : AndroidViewModel(application) {
+class PaintListViewModel(private val repository: LocalRepository) : ViewModel() {
     //активируем и считываем данные из репозитория
-    private var repository: LocalRepository
-
-    init {
-        val dbDao = LocalDatabase.getDatabase(application).dbDao()
-        repository = LocalRepository(dbDao)
-    }
-
     val readAllData: LiveData<List<Paint>> = repository.getPaints
 
     // удаляем данные из репозитория в корутине

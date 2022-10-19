@@ -11,16 +11,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import ru.kitfactory.mixingautopaint.App
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.di.factory.ViewModelFactory
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
+import ru.kitfactory.mixingautopaint.viewmodel.EditViewModel
+import javax.inject.Inject
 
 class EditFragment : Fragment() {
     private val argsForEdit by navArgs<EditFragmentArgs>()
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
     private val viewModel: EditViewModel by lazy {
-        ViewModelProvider(this)[EditViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[EditViewModel::class.java]
     }
     private lateinit var saveEditButton: Button
     private lateinit var editTitle: TextInputLayout
@@ -82,6 +88,15 @@ class EditFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        injectDagger()
+    }
+
+    private fun injectDagger() {
+        App.instance.appComponent.inject(this)
     }
 
     private fun updateDataToDatabase(

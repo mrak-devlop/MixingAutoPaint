@@ -1,4 +1,4 @@
-package ru.kitfactory.mixingautopaint
+package ru.kitfactory.mixingautopaint.presentation
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.presentation.detailFragment.Callbacks
 
 

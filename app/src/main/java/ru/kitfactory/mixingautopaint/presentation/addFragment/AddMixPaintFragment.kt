@@ -10,16 +10,21 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import ru.kitfactory.mixingautopaint.App
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.di.factory.ViewModelFactory
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
 import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
+import ru.kitfactory.mixingautopaint.viewmodel.AddMixPaintViewModel
+import javax.inject.Inject
 
 class AddMixPaintFragment : Fragment() {
-
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
     private val viewModel: AddMixPaintViewModel by lazy {
-        ViewModelProvider(this)[AddMixPaintViewModel::class.java]
+        ViewModelProvider(this, vmFactory)[AddMixPaintViewModel::class.java]
     }
     private lateinit var saveButton: Button
     private lateinit var inTitle: TextInputLayout
@@ -63,8 +68,8 @@ class AddMixPaintFragment : Fragment() {
             val diluentPart = inDiluentPartInput.text.toString()
             val massPaint = inMassPaintInput.text.toString()
             /* валидация ввода */
-            val chekFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
-            if (chekFieldsUseCase.execute()) {
+            val checkFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
+            if (checkFieldsUseCase.execute()) {
                 val forMix = ru.kitfactory.mixingautopaint.domain.models.PaintForMix(
                     title,
                     paintPart,
@@ -78,6 +83,15 @@ class AddMixPaintFragment : Fragment() {
 
         }
         return view
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        injectDagger()
+    }
+
+    private fun injectDagger() {
+        App.instance.appComponent.inject(this)
     }
 
     private fun insertDataToDatabase(forMix: ru.kitfactory.mixingautopaint.domain.models.PaintForMix) {
@@ -100,5 +114,6 @@ class AddMixPaintFragment : Fragment() {
             viewModel.addPaint(paint)
             findNavController().navigate(R.id.action_addMixPaintFragment_to_paintListFragment)
     }
+
 
 }

@@ -3,9 +3,10 @@ package ru.kitfactory.mixingautopaint.data.repository
 import androidx.lifecycle.LiveData
 import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
 import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import javax.inject.Inject
 
 
-class LocalRepository(private val dbDao: DbDao){
+class LocalRepository @Inject constructor (private val dbDao: DbDao){
     //получаем полный список красок
 
     val getPaints: LiveData<List<Paint>> = dbDao.getPaints()
