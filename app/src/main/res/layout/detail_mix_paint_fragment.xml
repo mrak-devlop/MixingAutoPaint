@@ -6,6 +6,7 @@
     tools:context=".presentation.detailFragment.DetailMixPaintFragment">
 
     <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewElevatedStyle"
         android:id="@+id/item_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,9 +86,12 @@
 
             <!-- Buttons -->
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/edit_button"
-                style="?attr/borderlessButtonStyle"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:clickable="true"
+                android:focusable="true"
+                android:checkable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

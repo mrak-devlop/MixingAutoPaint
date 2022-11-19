@@ -118,7 +118,10 @@
 
         <Button
             android:id="@+id/saveEditButton"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:clickable="true"
+            android:focusable="true"
+            android:checkable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bt_save"
