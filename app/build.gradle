@@ -15,8 +15,8 @@ android {
         applicationId "ru.kitfactory.mixingautopaint"
         minSdk 26
         targetSdk 33
-        versionCode 3
-        versionName "1.3"
+        versionCode 4
+        versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -58,12 +58,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
 
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
-    implementation 'com.google.dagger:dagger:2.44'
+    implementation 'com.google.dagger:dagger:2.44.2'
     kapt 'com.google.dagger:dagger-compiler:2.44'
 
     implementation 'androidx.room:room-runtime:2.4.3'

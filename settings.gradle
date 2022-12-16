@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "MixingAutoPaint"
 include ':app'
 include ':data'
+include ':domain'
