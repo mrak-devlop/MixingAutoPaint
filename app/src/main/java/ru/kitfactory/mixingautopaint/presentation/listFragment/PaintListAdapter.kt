@@ -3,42 +3,29 @@ package ru.kitfactory.mixingautopaint.presentation.listFragment
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import ru.kitfactory.mixingautopaint.R
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.domain.models.PaintDomainModel
+import ru.kitfactory.mixingautopaint.databinding.ItemFragmentListBinding
+import ru.kitfactory.mixingautopaint.models.PaintAppModel
 import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 
-const val SPACE = " "
-const val COLON = ":"
 
 class PaintListAdapter(private val textData: PrintResText) :
     RecyclerView.Adapter<PaintListAdapter.ViewHolder>() {
-    private var paintList = emptyList<Paint>()
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleText: TextView
-        val partsText: TextView
-        val mixText: TextView
-        val rowLayout: LinearLayout
-
-        init {
-            titleText = view.findViewById(R.id.title_text)
-            partsText = view.findViewById(R.id.parts_text)
-            mixText = view.findViewById(R.id.mix_text)
-            rowLayout = view.findViewById(R.id.row_layout)
-        }
+    companion object {
+        const val SPACE = " "
+        const val COLON = ":"
     }
+    private var paintList = emptyList<PaintAppModel>()
+
+    class ViewHolder(val binding: ItemFragmentListBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_fragment_list, parent, false)
-
-        return ViewHolder(view)
+        val binding = ItemFragmentListBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -47,7 +34,7 @@ class PaintListAdapter(private val textData: PrintResText) :
         val paintMass = currentItem.paintMass.toString()
         val printGram = textData.printGram
         val printTitle = (titleMix + SPACE + paintMass + SPACE + printGram)
-        holder.titleText.text = printTitle
+        holder.binding.titleText.text = printTitle
 
         val partsTitle = textData.partsTitle
         val partPaint = currentItem.partPaint.toString()
@@ -55,7 +42,7 @@ class PaintListAdapter(private val textData: PrintResText) :
         val partDiluent = currentItem.partDiluent.toString()
         val printParts = (partsTitle + SPACE + partPaint +
                 COLON + partHardener + COLON + partDiluent)
-        holder.partsText.text = printParts
+        holder.binding.partsText.text = printParts
 
         val text1Mix = textData.text1Mix
         val text2Mix = textData.text2Mix
@@ -70,9 +57,9 @@ class PaintListAdapter(private val textData: PrintResText) :
                 massHardenerForMix + text3Mix +
                 paintPlusHardener + text4Mix +
                 massDiluentForMix + text5Mix)
-        holder.mixText.text = printMix
+        holder.binding.mixText.text = printMix
 
-        holder.rowLayout.setOnClickListener {
+        holder.binding.rowLayout.setOnClickListener {
             val directions = PaintListFragmentDirections
                 .actionPaintListFragmentToDetailMixPaintFragment(currentItem)
             holder.itemView.findNavController().navigate(directions)
@@ -85,7 +72,7 @@ class PaintListAdapter(private val textData: PrintResText) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(paint: List<Paint>) {
+    fun setData(paint: List<PaintAppModel>) {
         this.paintList = paint
         notifyDataSetChanged()
     }

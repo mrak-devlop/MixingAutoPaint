@@ -5,27 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.kitfactory.mixingautopaint.R
-
-
-const val SPACE = " "
-const val COLON = ":"
+import ru.kitfactory.mixingautopaint.databinding.DetailMixPaintFragmentBinding
 
 class DetailMixPaintFragment : Fragment() {
+    companion object{
+        private const val SPACE = " "
+        private const val COLON = ":"
+    }
+    private var _binding: DetailMixPaintFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private val args by navArgs<DetailMixPaintFragmentArgs>()
-    private lateinit var titleText: TextView
-    private lateinit var partsText: TextView
-    private lateinit var parts: TextView
-    private lateinit var mixText: TextView
-    private lateinit var checkBoxNotification: CheckBox
-    private lateinit var editButton: Button
     private var callbacks: Callbacks? = null
 
     override fun onAttach(context: Context) {
@@ -36,16 +30,10 @@ class DetailMixPaintFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.detail_mix_paint_fragment, container, false)
-        titleText = view.findViewById(R.id.detail_title_text)
-        partsText = view.findViewById(R.id.detail_parts_text)
-        parts = view.findViewById(R.id.detail_parts)
-        mixText = view.findViewById(R.id.detail_mix_text)
-        checkBoxNotification = view.findViewById(R.id.show_notification)
-        editButton = view.findViewById(R.id.edit_button)
-
-        editButton.setOnClickListener {
+    ): View {
+        _binding = DetailMixPaintFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        binding.editButton.setOnClickListener {
             val directions = DetailMixPaintFragmentDirections
                 .actionDetailMixPaintFragmentToEditFragment(args.currentPaint)
             findNavController().navigate(directions)
@@ -55,15 +43,15 @@ class DetailMixPaintFragment : Fragment() {
         val paintMass = args.currentPaint.paintMass.toString()
         val gramString = getString(R.string.gram_in_list)
         val printTitle = (titleMix + SPACE + paintMass + SPACE + gramString)
-        titleText.text = printTitle
+        binding.detailTitleText.text = printTitle
 
         val partsTitle = getString(R.string.parts_in_list)
         val partPaint = args.currentPaint.partPaint.toString()
         val partHardener = args.currentPaint.partHardener.toString()
         val partDiluent = args.currentPaint.partDiluent.toString()
-        partsText.text = partsTitle
+        binding.detailPartsText.text = partsTitle
         val printParts = (partPaint + COLON + partHardener + COLON + partDiluent)
-        parts.text = printParts
+        binding.detailParts.text = printParts
 
         val text1Mix = getString(R.string.mix1_list)
         val text2Mix = getString(R.string.mix2_list)
@@ -77,7 +65,8 @@ class DetailMixPaintFragment : Fragment() {
         val printMix = (text1Mix + paintMassForMix + text2Mix +
                 massHardenerForMix + text3Mix + paintPlusHardener +
                 text4Mix + massDiluentForMix + text5Mix)
-        mixText.text = printMix
+        binding.detailMixText.text = printMix
+        val checkBoxNotification = binding.showNotification
         checkBoxNotification.setOnClickListener {
             if (checkBoxNotification.isChecked)
                 callbacks?.onShowNotification(printTitle, printMix)
@@ -93,6 +82,8 @@ class DetailMixPaintFragment : Fragment() {
         super.onDetach()
         callbacks = null
     }
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

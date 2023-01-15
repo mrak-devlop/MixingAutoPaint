@@ -2,7 +2,7 @@ package ru.kitfactory.mixingautopaint.domain.usecase
 
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 
-class ChekFieldsUseCase(private val field: FieldForCheck, private val errors:List<String>) {
+class CheckFieldsUseCase(private val field: FieldForCheck, private val errors:List<String>) {
     fun execute(): Boolean{
         if (field.inTitleInput.length() == 0){
             field.inTitle.error = errors[0]

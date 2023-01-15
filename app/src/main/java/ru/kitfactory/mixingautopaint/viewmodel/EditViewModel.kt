@@ -4,14 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kitfactory.mixingautopaint.data.repository.LocalRepository
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.domain.models.PaintDomainModel
+import ru.kitfactory.domain.usecase.UpdatePaintUseCase
+import ru.kitfactory.mixingautopaint.data.repository.PaintRepositoryImpl
 
-class EditViewModel(private val repository: LocalRepository) : ViewModel() {
-
-    fun updatePaint(paint: Paint){
+class EditViewModel(repository: PaintRepositoryImpl) : ViewModel() {
+    private val updatePaintUseCase = UpdatePaintUseCase(repository)
+    fun updatePaint(paint: PaintDomainModel){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updatePaint(paint)
+           updatePaintUseCase.execute(paint)
         }
     }
 }

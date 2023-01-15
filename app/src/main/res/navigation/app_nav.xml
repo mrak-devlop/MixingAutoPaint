@@ -40,7 +40,7 @@
             app:destination="@id/paintListFragment" />
         <argument
             android:name="currentPaint"
-            app:argType="ru.kitfactory.mixingautopaint.data.storage.db.Paint" />
+            app:argType="ru.kitfactory.mixingautopaint.models.PaintAppModel" />
         <action
             android:id="@+id/action_detailMixPaintFragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -55,6 +55,6 @@
             app:destination="@id/paintListFragment" />
         <argument
             android:name="currentPaintForEdit"
-            app:argType="ru.kitfactory.mixingautopaint.data.storage.db.Paint" />
+            app:argType="ru.kitfactory.mixingautopaint.models.PaintAppModel" />
     </fragment>
 </navigation>

@@ -10,14 +10,15 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kitfactory.mixingautopaint.App
 import ru.kitfactory.mixingautopaint.R
 import ru.kitfactory.mixingautopaint.R.drawable
+import ru.kitfactory.mixingautopaint.databinding.FragmentPaintListBinding
 import ru.kitfactory.mixingautopaint.di.factory.ViewModelFactory
 import ru.kitfactory.mixingautopaint.presentation.model.PrintResText
 import ru.kitfactory.mixingautopaint.viewmodel.PaintListViewModel
@@ -25,8 +26,11 @@ import javax.inject.Inject
 
 
 class PaintListFragment : Fragment() {
-    private lateinit var addButton: FloatingActionButton
-    private lateinit var recyclerView: RecyclerView
+    companion object {
+        private val THRESHOLD = 0.7f
+    }
+    private var _binding: FragmentPaintListBinding? = null
+    private val binding get() = _binding!!
     @Inject
     lateinit var vmFactory: ViewModelFactory
     private val viewModel: PaintListViewModel by lazy {
@@ -37,10 +41,9 @@ class PaintListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_paint_list, container, false)
-        addButton = view.findViewById(R.id.addMixButton) as FloatingActionButton
-        recyclerView = view.findViewById(R.id.paint_mix_recycler_view) as RecyclerView
+    ): View {
+        _binding = FragmentPaintListBinding.inflate(inflater, container, false)
+        val view = binding.root
         @SuppressLint("UseCompatLoadingForDrawables")
         trashBinIcon = activity?.resources?.getDrawable(
             drawable.ic_baseline_delete_forever, null
@@ -59,11 +62,6 @@ class PaintListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // вызываем фрагмент добавления краски
-        addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_paintListFragment_to_addMixPaintFragment)
-        }
-
         // получаем текстовые данные из строковых ресурсов для отправки в адаптер
         val textData = PrintResText(
             getString(R.string.gram_in_list),
@@ -131,24 +129,35 @@ class PaintListFragment : Fragment() {
             }
 
             override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
-                return 0.7f
+                return THRESHOLD
             }
 
 
         }
         // привязываем обработчик свайпов к recyclerview
         val myHelper = ItemTouchHelper(itemTouchHelperCallback)
-        myHelper.attachToRecyclerView(recyclerView)
+        myHelper.attachToRecyclerView(binding.paintMixRecyclerView)
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.addMixButton.setOnClickListener{
+           viewModel.onFabButtonClick(view)
+        }
     }
 
     fun loadListPaint(textData: PrintResText) {
         val adapter = PaintListAdapter(textData)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.readAllData.observe(viewLifecycleOwner, { paint ->
-            adapter.setData(paint)
-        })
+        binding.paintMixRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.paintMixRecyclerView.adapter = adapter
+        lifecycleScope.launchWhenStarted {
+            val data = viewModel.dataState.
+            data
+        }
+        binding.paintMixRecyclerView.adapter = adapter
+
+
     }
 
     fun deletePaint(textData: PrintResText, viewHolder: RecyclerView.ViewHolder) {
@@ -157,5 +166,8 @@ class PaintListFragment : Fragment() {
         adapter.notifyItemRemoved(viewHolder.adapterPosition)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

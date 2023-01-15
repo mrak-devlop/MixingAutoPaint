@@ -1,14 +1,16 @@
 package ru.kitfactory.domain
 
-import androidx.lifecycle.LiveData
-import ru.kitfactory.domain.models.PaintModel
+import ru.kitfactory.domain.models.PaintDomainModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 interface PaintRepository {
-    val getPaints: LiveData<List<PaintModel>>
 
-    suspend fun addNewPaint(paint: PaintModel)
+    fun getPaints(): Flow<List<PaintDomainModel>>
 
-    suspend fun removePaint(paint: PaintModel)
+    suspend fun addNewPaint(paint: PaintDomainModel)
 
-    suspend fun updatePaint(ppaint: PaintModel)
+    suspend fun removePaint(id: Int)
+
+    suspend fun updatePaint(paint: PaintDomainModel)
 }

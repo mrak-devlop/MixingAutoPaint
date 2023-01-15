@@ -1,6 +1,6 @@
 package ru.kitfactory.domain.models
 
-data class PaintModel (
+data class PaintDomainModel (
     val id: Int, //уникальное поле
     var titleMix: String = "", // заголовок
     var partPaint: Float = 0f, //количество частей краски

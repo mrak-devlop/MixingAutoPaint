@@ -1,7 +1,9 @@
 package ru.kitfactory.domain.usecase
 
-import ru.kitfactory.domain.models.PaintModel
+import ru.kitfactory.domain.PaintRepository
 
-class RemovePaintUseCase {
-    fun execute(paint: PaintModel){}
+class RemovePaintUseCase(private val paintRepository: PaintRepository) {
+    suspend fun execute(id: Int){
+        paintRepository.removePaint(id)
+    }
 }

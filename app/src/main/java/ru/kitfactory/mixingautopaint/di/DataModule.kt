@@ -3,9 +3,14 @@ package ru.kitfactory.mixingautopaint.di
 import android.app.Application
 import dagger.Module
 import dagger.Provides
-import ru.kitfactory.mixingautopaint.data.repository.LocalRepository
-import ru.kitfactory.mixingautopaint.data.storage.db.DbDao
-import ru.kitfactory.mixingautopaint.data.storage.db.LocalDatabase
+import ru.kitfactory.domain.PaintRepository
+import ru.kitfactory.mixingautopaint.data.db.DbDao
+
+import ru.kitfactory.mixingautopaint.data.repository.PaintRepositoryImpl
+
+import ru.kitfactory.mixingautopaint.data.db.LocalDatabase
+
+
 import javax.inject.Singleton
 
 @Module
@@ -17,7 +22,7 @@ class DataModule {
     }
     @Singleton
     @Provides
-    fun provideRepository(dbDao: DbDao): LocalRepository {
-        return LocalRepository (dbDao)
+    fun providePaintRepositoryImpl(dbDao: DbDao): PaintRepository{
+        return PaintRepositoryImpl(dbDao)
     }
 }

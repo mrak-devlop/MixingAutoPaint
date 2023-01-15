@@ -1,4 +1,4 @@
-package ru.kitfactory.mixingautopaint.data.storage.db
+package ru.kitfactory.mixingautopaint.data.db
 
 import android.content.Context
 import androidx.room.Database
@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Paint::class], version = 1, exportSchema = false)
+@Database(entities = [PaintDbModel::class], version = 2, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun dbDao(): DbDao
 
@@ -23,7 +23,9 @@ abstract class LocalDatabase : RoomDatabase() {
                     context.applicationContext,
                     LocalDatabase::class.java,
                     "mix_paint_database"
-                ).build()
+                )
+                    .createFromAsset("database/bus_schedule.db")
+                    .build()
                 INSTANCE = instance
                 return instance
             }

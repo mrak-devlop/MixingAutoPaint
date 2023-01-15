@@ -6,77 +6,59 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import ru.kitfactory.domain.models.PaintDomainModel
 import ru.kitfactory.mixingautopaint.App
 import ru.kitfactory.mixingautopaint.R
-import ru.kitfactory.mixingautopaint.data.storage.db.Paint
+import ru.kitfactory.mixingautopaint.databinding.EditFragmentBinding
 import ru.kitfactory.mixingautopaint.di.factory.ViewModelFactory
 import ru.kitfactory.mixingautopaint.domain.models.FieldForCheck
 import ru.kitfactory.mixingautopaint.domain.usecase.CalcMixUseCase
-import ru.kitfactory.mixingautopaint.domain.usecase.ChekFieldsUseCase
+import ru.kitfactory.mixingautopaint.domain.usecase.CheckFieldsUseCase
 import ru.kitfactory.mixingautopaint.viewmodel.EditViewModel
 import javax.inject.Inject
 
 class EditFragment : Fragment() {
     private val argsForEdit by navArgs<EditFragmentArgs>()
+    private var _binding: EditFragmentBinding? = null
+    private val binding get() = _binding!!
     @Inject
     lateinit var vmFactory: ViewModelFactory
     private val viewModel: EditViewModel by lazy {
         ViewModelProvider(this, vmFactory)[EditViewModel::class.java]
     }
-    private lateinit var saveEditButton: Button
-    private lateinit var editTitle: TextInputLayout
-    private lateinit var editTitleInput: TextInputEditText
-    private lateinit var editPaintPart: TextInputLayout
-    private lateinit var editPaintPartInput: TextInputEditText
-    private lateinit var editHardenerPart: TextInputLayout
-    private lateinit var editHardenerPartInput: TextInputEditText
-    private lateinit var editDiluentPart: TextInputLayout
-    private lateinit var editDiluentPartInput: TextInputEditText
-    private lateinit var editMassPaint: TextInputLayout
-    private lateinit var editMassPaintInput: TextInputEditText
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.edit_fragment, container, false)
-        saveEditButton = view.findViewById(R.id.saveEditButton)
-        editTitle = view.findViewById(R.id.editTitle)
-        editTitleInput = view.findViewById(R.id.editTitleInput)
-        editPaintPart = view.findViewById(R.id.editPaintPart)
-        editPaintPartInput = view.findViewById(R.id.editPaintPartInput)
-        editHardenerPart = view.findViewById(R.id.editHardenerPart)
-        editHardenerPartInput = view.findViewById(R.id.editHardenerPartInput)
-        editDiluentPart = view.findViewById(R.id.editDiluentPart)
-        editDiluentPartInput = view.findViewById(R.id.editDiluentPartInput)
-        editMassPaint = view.findViewById(R.id.editMassPaint)
-        editMassPaintInput = view.findViewById(R.id.editMassPaintInput)
-
+    ): View {
+        _binding = EditFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        val editTitleInput = binding.editTitleInput
         editTitleInput.setText(argsForEdit.currentPaintForEdit.titleMix)
+        val editPaintPartInput = binding.editPaintPartInput
         editPaintPartInput.setText(argsForEdit.currentPaintForEdit.partPaint.toString())
+        val editHardenerPartInput = binding.editHardenerPartInput
         editHardenerPartInput.setText(argsForEdit.currentPaintForEdit.partHardener.toString())
+        val editDiluentPartInput = binding.editDiluentPartInput
         editDiluentPartInput.setText(argsForEdit.currentPaintForEdit.partDiluent.toString())
+        val editMassPaintInput = binding.editMassPaintInput
         editMassPaintInput.setText(argsForEdit.currentPaintForEdit.paintMass.toString())
-        val fieldsIn = FieldForCheck(editTitle, editTitleInput, editPaintPart, editPaintPartInput,
-        editHardenerPart, editHardenerPartInput, editDiluentPart, editDiluentPartInput,
-            editMassPaint, editMassPaintInput)
+        val fieldsIn = FieldForCheck(binding.editTitle, editTitleInput, binding.editPaintPart, editPaintPartInput,
+        binding.editHardenerPart, editHardenerPartInput, binding.editDiluentPart, editDiluentPartInput,
+            binding.editMassPaint, editMassPaintInput)
         val errorMsg: List<String> = listOf(getString(R.string.title_error_msg),
             getString(R.string.error_msg))
 
-        saveEditButton.setOnClickListener {
+        binding.saveEditButton.setOnClickListener {
             val title = editTitleInput.text.toString()
             val paintPart = editPaintPartInput.text.toString()
             val hardenerPart = editHardenerPartInput.text.toString()
             val diluentPart = editDiluentPartInput.text.toString()
             val massPaint = editMassPaintInput.text.toString()
-            val chekFieldsUseCase = ChekFieldsUseCase(fieldsIn, errorMsg)
-            if (chekFieldsUseCase.execute()) {
+            val checkFieldsUseCase = CheckFieldsUseCase(fieldsIn, errorMsg)
+            if (checkFieldsUseCase.execute()) {
                 val forMix = ru.kitfactory.mixingautopaint.domain.models.PaintForMix(
                     title,
                     paintPart,
@@ -105,7 +87,7 @@ class EditFragment : Fragment() {
     ) {
         //пересчидываем краску
             val mixPaint = CalcMixUseCase(forMix).execute()
-            val paint = Paint(
+            val paint = PaintDomainModel(
                 id,
                 forMix.title,
                 forMix.paintPart.toFloat(),
@@ -122,5 +104,8 @@ class EditFragment : Fragment() {
             findNavController().navigate(R.id.action_editFragment_to_paintListFragment)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
